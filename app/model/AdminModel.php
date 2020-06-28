@@ -13,5 +13,8 @@ class AdminModel
        $this->conexion->queryBuscarUsuario();
     }
 
+    public function executeEliminarUsuario($idUsuario){
+        $this->conexion->executeEliminarUsuario($idUsuario);
+    }
 
 }

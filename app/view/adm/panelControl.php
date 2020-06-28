@@ -40,13 +40,13 @@ if(isset($_SESSION["usuarioOK"])) {
                     $usuarios = $_SESSION["usuarios"];
                     $tam = sizeof($usuarios);
                     for ($i = 1; $i <= $tam; $i++) {
-                        $pos = explode("-", $usuarios[$i]);
+                        $posUsuario = explode("-", $usuarios[$i]);
                         echo "<tr>";
-                        echo "<td>$pos[0]</td>";
-                        echo "<td>$pos[1]</td>";
-                        echo "<td>$pos[2]</td>";
+                        echo "<td>$posUsuario[0]</td>";
+                        echo "<td>$posUsuario[1]</td>";
+                        echo "<td>$posUsuario[2]</td>";
                         echo "<td>";
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='#'/>";
+                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
                         echo "</td>";
                         echo "<td>";
                         echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='#'/>";
@@ -61,7 +61,6 @@ if(isset($_SESSION["usuarioOK"])) {
                             </div>";
                     unset($_SESSION["sinDatosUsuarios"]);
                 }
- 
                 ?>
             </table>
         </div>

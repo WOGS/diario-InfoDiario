@@ -98,43 +98,18 @@ class Database{
     public function queryCambiarEstado($idNoticia,$idEstado){
 
         $estado = "";
-
         if (strcmp ($idEstado , "SI" ) == 0){
             $estado = "NO";
         } else {
             $estado = "SI";
         }
-
         $stmt = $this->conexion->prepare("UPDATE Noticia SET EstadoAutorizado=?  WHERE Cod_noticia=?");
         $stmt->bind_param('si', $estado,$idNoticia);
         
         $stmt->execute();
         $stmt->close();
 
-        $stmt2 = $this->conexion->prepare("SELECT * FROM Noticia");
-        $stmt2->execute();
-        $result = $stmt2->get_result();
-
-        if($result->num_rows === 0) {
-            $_SESSION["sinDatos"] = "0";
-        }else{
-            $i=1;
-            while($row = $result->fetch_assoc()) {
-                $codNoticia= $row['Cod_noticia'];
-                $titulo=$row['Titulo'];
-                $subTitulo = $row['Subtitulo'];
-                $estadoAutorizado = $row['EstadoAutorizado'];
-                $origen = $row['Origen'];
-
-                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen;
-                $i++;
-            }
-            // se guarda las revistas recuperados de la consulta en SESSION
-            $_SESSION["noticias"] = $resultados;
-        }
-
-        $stmt2->close();
-        $this->conexion->close();
+        $this->queryBuscarNoticias();
     }
 
     public function queryBuscarUsuario(){
@@ -171,31 +146,18 @@ class Database{
         $stmt->execute();
         $_SESSION["noticiaEliminada"] = "si";
         $stmt->close();
+        $this->queryBuscarNoticias();
+    }
 
-        $stmt2 = $this->conexion->prepare("SELECT * FROM Noticia");
-        $stmt2->execute();
-        $result = $stmt2->get_result();
+    public function executeEliminarUsuario($idUsuario){
 
-        if($result->num_rows === 0) {
-            $_SESSION["sinDatosNoticias"] = "0";
-        }else{
-            $i=1;
-            while($row = $result->fetch_assoc()) {
-                $codNoticia= $row['Cod_noticia'];
-                $titulo=$row['Titulo'];
-                $subTitulo = $row['Subtitulo'];
-                $estadoAutorizado = $row['EstadoAutorizado'];
-                $origen = $row['Origen'];
+        $stmt = $this->conexion->prepare("DELETE FROM Usuario WHERE Id_usuario=?");
+        $stmt->bind_param('i', $idUsuario);
 
-                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen;
-                $i++;
-            }
-            // se guarda las revistas recuperados de la consulta en SESSION
-            $_SESSION["noticias"] = $resultados;
-        }
-
-        $stmt2->close();
-        $this->conexion->close();
+        $stmt->execute();
+        $_SESSION["usuarioEliminado"] = "si";
+        $stmt->close();
+        $this->queryBuscarUsuario();
     }
 
     public function queryInsert($sql){

@@ -105,6 +105,13 @@ switch ($page){
         $controller->executeListarUsuario();
         break;
 
+    case "eliminarUsuario":
+        $idUsuario = $_GET["idUsiario"];
+        include_once("controller/AdministradorController.php");
+        $controller = new AdministradorController();
+        $controller->executeEliminarUsuario($idUsuario);
+        break;
+
     case "inicioAdm":
     default:
         include_once("controller/InicioController.php");

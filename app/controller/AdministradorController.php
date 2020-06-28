@@ -14,7 +14,12 @@ class AdministradorController
         }
 
         public function executeListarUsuario(){
-                    $this->modelo->executeListarUsuario();
-                    include_once("view/adm/panelControl.php");
-                }
+            $this->modelo->executeListarUsuario();
+            include_once("view/adm/panelControl.php");
+        }
+
+    public function executeEliminarUsuario($idUsuario){
+        $this->modelo->executeEliminarUsuario($idUsuario);
+        include_once("view/adm/panelControl.php");
+    }
 }
