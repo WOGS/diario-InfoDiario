@@ -36,7 +36,7 @@ class Database{
         }
         // se guarda el usuario recuperado de la consulta en SESSION
         $_SESSION["usuarioOK"] = $resultado;
-         $stmt->close();
+        $stmt->close();
         $this->conexion->close();
     }
     public function queryBuscarRevistas(){
@@ -132,6 +132,33 @@ class Database{
             }
             // se guarda las revistas recuperados de la consulta en SESSION
             $_SESSION["usuarios"] = $resultados;
+        }
+
+        $stmt->close();
+        $this->conexion->close();
+    }
+
+    public function executeBuscarUsuarioById($idUsuario){
+
+        $stmt = $this->conexion->prepare("SELECT * FROM Usuario WHERE Id_usuario = ?");
+        $stmt->bind_param('i', $idUsuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinDatosUsuarios"] = "0";
+        }else{
+            $i=1;
+            while($row = $result->fetch_assoc()) {
+                $idUsuario= $row['Id_usuario'];
+                $nombre=$row['Nombre'];
+                $mail = $row['Mail'];
+
+                $resultados[$i]= $idUsuario."-".$nombre."-".$mail;
+                $i++;
+            }
+            // se guarda las revistas recuperados de la consulta en SESSION
+            $_SESSION["usuariosModif"] = $resultados;
         }
 
         $stmt->close();

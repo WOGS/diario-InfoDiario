@@ -9,6 +9,6 @@ class LoginModel
         $this->conexion = new Database();
     }
     public function verificarUsuario($usuario,$clave){
-        $this->conexion->query($usuario,$clave);
+         $this->conexion->query($usuario,$clave);
     }
 }

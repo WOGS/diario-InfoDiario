@@ -17,4 +17,8 @@ class AdminModel
         $this->conexion->executeEliminarUsuario($idUsuario);
     }
 
+    public function executeBuscarUsuarioById($idUsuario){
+        $this->conexion->executeBuscarUsuarioById($idUsuario);
+    }
+
 }

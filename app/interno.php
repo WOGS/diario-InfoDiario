@@ -1,8 +1,8 @@
 <?php
-include_once("view/partial/headerInteno.php");
+include_once("view/partial/header.php");
 
 
-$_SESSION["usuarioAlta"] = "Admin";
+//$_SESSION["usuarioAlta"] = "Admin";
 $_SESSION["actionReg"] = "interno";
 $page = isset($_GET[ "page" ]) ? $_GET[ "page" ] : "inicioAdm";
 
@@ -110,6 +110,20 @@ switch ($page){
         include_once("controller/AdministradorController.php");
         $controller = new AdministradorController();
         $controller->executeEliminarUsuario($idUsuario);
+        break;
+
+    case "modifUsuario":
+        $idUsuario = $_GET["idUsiario"];
+        include_once("controller/AdministradorController.php");
+        $controller = new AdministradorController();
+        $controller->executeEliminarUsuario($idUsuario);
+        break;
+
+    case "buscarUsuarioById":
+        $idUsuario = $_GET["idUsiario"];
+        include_once("controller/AdministradorController.php");
+        $controller = new AdministradorController();
+        $controller->executeBuscarUsuarioById($idUsuario);
         break;
 
     case "inicioAdm":

@@ -2,7 +2,7 @@
 include_once("view/partial/header.php");
 
 $page = isset($_GET[ "page" ]) ? $_GET[ "page" ] : "inicio";
-$_SESSION["usuarioAlta"] = "Usuario";
+//$_SESSION["usuarioAlta"] = "Usuario";
 switch ($page){
 
     case "login":

@@ -8,31 +8,34 @@ class LoginController{
     }
 
     public function execute($usuario,$clave){
-        $userRol = $_SESSION["usuarioAlta"];
-        $control =0;
+      //  $userRol = $_SESSION["usuarioAlta"];
+    //    $control =0;
         $this->modelo->verificarUsuario($usuario,$clave);
 
-        if(isset($_SESSION["loginError"])){
-            $control =1;
-        }
+       // if(isset($_SESSION["loginError"])){
+       //     $control =1;
+       // }
 
-        if($userRol =="Usuario"){
-            header("Location: index.php");
-        }else{
-            if($control==1){
-                header("Location: interno.php");
-            }else{
+        //if($userRol =="Usuario"){
+         //   header("Location: index.php");
+        //}else{
+        //    if($control==1){
+        //        header("Location: interno.php");
+        //    }else{
+
                 $usuario = $_SESSION["usuarioOK"];
                 $pos = explode("-", $usuario);
                 if($pos[2]==1){// codigo 1 Administrador
                     header("Location: interno.php?page=panelControl");
                 }elseif($pos[2]==2){// codigo 2 Contenidista
                     header("Location: interno.php?page=admRevista");
+                }elseif($pos[2]==3){// codigo 3 Lector
+                    header("Location: index.php");
                 }else{
-                        session_destroy();
+                        //session_destroy();
                         header("Location: interno.php");
                     }
             }
-        }
-    }
+        //}
+    //}
 }
