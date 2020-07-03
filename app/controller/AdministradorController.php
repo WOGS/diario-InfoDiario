@@ -25,7 +25,7 @@ class AdministradorController
 
     public function executeBuscarUsuarioById($idUsuario){
         $this->modelo->executeBuscarUsuarioById($idUsuario);
-        include_once("view/adm/panelControl.php");
+        include_once("view/modificarUsuarioView.php");
     }
 
 }

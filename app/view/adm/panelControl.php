@@ -49,7 +49,7 @@ if(isset($_SESSION["usuarioOK"])) {
                         echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
                         echo "</td>";
                         echo "<td>";
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='interno.php?page=modifUsuario&idUsiario=$posUsuario[0]'/>";
+                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='interno.php?page=buscarUsuarioById&idUsiario=$posUsuario[0]'/>";
                         echo "</td>";
                         echo"</tr>";
                     }

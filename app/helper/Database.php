@@ -139,7 +139,6 @@ class Database{
     }
 
     public function executeBuscarUsuarioById($idUsuario){
-
         $stmt = $this->conexion->prepare("SELECT * FROM Usuario WHERE Id_usuario = ?");
         $stmt->bind_param('i', $idUsuario);
         $stmt->execute();
@@ -148,19 +147,18 @@ class Database{
         if($result->num_rows === 0) {
             $_SESSION["sinDatosUsuarios"] = "0";
         }else{
-            $i=1;
             while($row = $result->fetch_assoc()) {
                 $idUsuario= $row['Id_usuario'];
+                $nroDoc=$row['Nro_doc'];
                 $nombre=$row['Nombre'];
                 $mail = $row['Mail'];
-
-                $resultados[$i]= $idUsuario."-".$nombre."-".$mail;
-                $i++;
+                $pass = $row['Pass'];
+                $tel = $row['Telefono'];
+                $resultado = $idUsuario."-".$nroDoc."-".$nombre."-".$mail."-".$pass."-".$tel;
             }
-            // se guarda las revistas recuperados de la consulta en SESSION
-            $_SESSION["usuariosModif"] = $resultados;
+            // se guarda el usuario a modificar en SESSION
+            $_SESSION["usuariosModif"] = $resultado;
         }
-
         $stmt->close();
         $this->conexion->close();
     }

@@ -2,7 +2,7 @@
 include_once("view/partial/header.php");
 
 
-//$_SESSION["usuarioAlta"] = "Admin";
+$_SESSION["usuarioAlta"] = "Admin";
 $_SESSION["actionReg"] = "interno";
 $page = isset($_GET[ "page" ]) ? $_GET[ "page" ] : "inicioAdm";
 
@@ -112,18 +112,23 @@ switch ($page){
         $controller->executeEliminarUsuario($idUsuario);
         break;
 
-    case "modifUsuario":
-        $idUsuario = $_GET["idUsiario"];
-        include_once("controller/AdministradorController.php");
-        $controller = new AdministradorController();
-        $controller->executeEliminarUsuario($idUsuario);
-        break;
-
     case "buscarUsuarioById":
         $idUsuario = $_GET["idUsiario"];
         include_once("controller/AdministradorController.php");
         $controller = new AdministradorController();
         $controller->executeBuscarUsuarioById($idUsuario);
+        break;
+
+    case "modifDatosUsuario":
+        $usuario = $_POST["usuario"];
+        $clave = $_POST["clave"];
+        $nroDoc = $_POST["nroDoc"];
+        $tel = $_POST["telefono"];
+        $mail = $_POST["mail"];
+        $idUsuario = $_POST["idUsuario"];
+        include_once("controller/AltaUsuarioController.php");
+        $controller = new AltaUsuarioController();
+        $controller->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUser,$idUsuario);
         break;
 
     case "inicioAdm":
