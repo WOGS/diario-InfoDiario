@@ -15,6 +15,7 @@ class RevistaModel
 
     public function executeBuscarNoticias(){
         $this->conexion->queryBuscarNoticias();
+
     }
 
     public function executeCambiarEstadoNoticia($idNoticia,$idEstado){
@@ -41,4 +42,20 @@ class RevistaModel
         $this->conexion->queryInsert($sql);
         $this->conexion->close();
     }
+
+
+    public function executeGuardarSeccion($nombreSeccion,$descripcion,$codProducto,$codContenidista){
+
+        $sql = "INSERT INTO Seccion (nombreSeccion,Descripcion,Cod_producto,Cod_contenidista)
+      value ('$nombreSeccion','$descripcion',$codProducto,$codContenidista)";
+        $this->conexion->queryInsert($sql);
+        $this->conexion->close();
+        $_SESSION["sql"] = $sql;
+    }
+
+
+    public function executeBuscarSecciones(){
+       $this->conexion->executeBuscarSecciones();
+    }
+
 }

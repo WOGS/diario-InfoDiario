@@ -39,6 +39,7 @@ class Database{
         $stmt->close();
         $this->conexion->close();
     }
+    
     public function queryBuscarRevistas(){
 
         $stmt = $this->conexion->prepare("SELECT * FROM Diario_Revista");
@@ -185,6 +186,34 @@ class Database{
         $this->queryBuscarUsuario();
     }
 
+
+    public function executeBuscarSecciones(){
+
+        $stmt = $this->conexion->prepare("SELECT * FROM Seccion");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinDatosSeccion"] = "0";
+        }else{
+            $i=1;
+            while($row = $result->fetch_assoc()) {
+                $codSeccion= $row['Cod_seccion'];
+                $nombreSeccion=$row['NombreSeccion'];
+                $descripcion = $row['Descripcion'];
+                $codProducto= $row['Cod_producto'];
+
+                $resultados[$i]= $codSeccion."-".$nombreSeccion."-".$descripcion."-".$codProducto;
+                $i++;
+            }
+            // se guarda las Secciones recuperados de la consulta en SESSION
+            $_SESSION["secciones"] = $resultados;
+        }
+
+        $stmt->close();
+        $this->conexion->close();
+    }
+
     public function queryInsert($sql){
         mysqli_query($this->conexion, $sql);
     }
@@ -192,4 +221,6 @@ class Database{
     public function close(){
         mysqli_close($this->conexion);
     }
+
+
 }

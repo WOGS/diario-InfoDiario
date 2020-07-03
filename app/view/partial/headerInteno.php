@@ -49,7 +49,7 @@ if(isset($_SESSION["usuarioOK"])) {
                 <ul class="navbar-nav ml-auto">
 
                     <li class="nav-item">
-                        <a class="nav-link" href="view/logOutInterno.php">Salir</a>
+                        <a class="nav-link w3-display-right" href="view/logOutInterno.php">Salir</a>
                     </li>
                     <?php
                     }
