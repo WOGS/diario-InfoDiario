@@ -22,7 +22,7 @@ if(isset($_SESSION["usuarioOK"])) {
             <div class="w3-center">
             <div class="w3-bar">
                 <input class="w3-button w3-blue-grey w3-round w3-center" type="submit" name="boton" value="GRABAR">
-                <a href="interno.php?page=buscarNoticias" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar"> VOLVER </a>
+                <a href="interno.php?page=buscarNoticias" class="w3-button w3-blue-grey w3-round w3-center" style="text-decoration: none" value="cancelar"> VOLVER </a>
             </div>
             </div>
         </form>

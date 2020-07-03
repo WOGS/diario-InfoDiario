@@ -1,4 +1,4 @@
-<footer class="py-4 bg-primary">
+<footer id="footerInterno" class="py-4 bg-primary">
     <div class="container">
         <div class="row">
             <div class="col-md-6">

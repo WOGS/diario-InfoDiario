@@ -7,34 +7,28 @@ if(isset($_SESSION["usuarioOK"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <body>
-    <div class="w3-display-topmiddle">
-        <div class="w3-container w3-blue-grey w3-round">
-        </div>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h1>Panel de control Revista</h1>
-        <br>
-        <h2>Acciones posibles</h2>
+    <div class="w3-container w3-center">
+        <h1 class="w3-center">Panel de control Revista</h1>
+        <h2 class="w3-margin-left w3-margin-bottom" style="margin-top: 2%">Acciones posibles</h2>
         <div class="w3-center">
             <div class="w3-bar">
             <?php
             if($pos[2] == 1){?>
-                <a href="interno.php?page=crearRevista" class="w3-btn w3-red">Crear nueva Revista</a>
+                <a href="interno.php?page=crearRevista" class="w3-btn w3-red" style="text-decoration: none">Crear nueva Revista</a>
             <?php }
             ?>
-                <a href="interno.php?page=crearNoticia" class="w3-btn w3-red">Crear Noticia</a>
-                <a href="interno.php?page=panelControl" class="w3-btn w3-red" svalue="cancelar"> VOLVER </a>
+                <a href="interno.php?page=crearSeccion" class="w3-btn w3-red" style="text-decoration: none">Crear Seccion</a>
+                <a href="interno.php?page=crearNoticia" class="w3-btn w3-red" style="text-decoration: none">Crear Noticia</a>
+                <a href="interno.php?page=panelControl" class="w3-btn w3-red" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
             </div>
         </div>
         <br>
         <br>
         <br>
         <div class="w3-container">
-            <h2>Lista de Revistas</h2>
+            <div class="w3-container w3-light-grey w3-left-align w3-margin-bottom">
+                <h3 style="text-shadow:1px 1px 0 #444">Lista de Revistas</h3>
+            </div>
             <table class="w3-table w3-bordered w3-centered">
                 <tr>
                     <th>id Revista</th>
@@ -90,7 +84,64 @@ if(isset($_SESSION["usuarioOK"])) {
                 <br>
                 <br>
         <div class="w3-container">
-            <h2>Lista de Noticias</h2>
+            <div class="w3-container w3-light-grey w3-left-align w3-margin-bottom">
+                <h3 style="text-shadow:1px 1px 0 #444">Lista de Secciones</h3>
+            </div>
+            <table class="w3-table w3-bordered w3-centered">
+                <tr>
+                    <th>id Seccion</th>
+                    <th>Seccion</th>
+                    <th>Descripcion</th>
+                    <th>Producto</th>
+                    <th>Borrar</th>
+                    <th>Modificar</th>
+                </tr>
+                <?php
+                if(isset($_SESSION["secciones"])) {
+                    $secciones = $_SESSION["secciones"];
+                    $tam = sizeof($secciones);
+                    for ($i = 1; $i <= $tam; $i++) {
+                        $posSeccion = explode("-", $secciones[$i]);
+                        echo "<tr>";
+                        echo "<td>$posSeccion[0]</td>";
+                        echo "<td>$posSeccion[1]</td>";
+                        echo "<td>$posSeccion[2]</td>";
+                        echo "<td>$posSeccion[3]</td>";
+                        echo "<td>";
+                        if($pos[2] == 1){
+                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='#'/>";
+                        echo "</td>";
+                        echo "<td>";
+                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='#'/>";
+                        echo "</td>";
+                        } else {
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-disabled'href='#'/>";
+                            echo "</td>";
+                            echo "<td>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center w3-disabled' href='#'/>";
+                            echo "</td>";
+                        }
+                        
+                        echo"</tr>";
+                    }
+                }
+                if(isset($_SESSION["sinDatosSecciones"])) {
+                    echo"<div class='alert warning'>
+                              <span class='closebtn'>&times;</span>  
+                              <strong>Success!</strong> No hay datos para mostrar en la tabla
+                            </div>";
+                    unset($_SESSION["sinDatosSecciones"]);
+                }
+                ?>
+            </table>
+        </div>
+                <br>
+                <br>
+                <br>
+        <div class="w3-container">
+            <div class="w3-container w3-light-grey w3-left-align w3-margin-bottom">
+                <h3 style="text-shadow:1px 1px 0 #444">Lista de Noticias</h3>
+            </div>
             <table class="w3-table w3-bordered w3-centered">
                 <tr>
                     <th>cod. Noticia</th>
