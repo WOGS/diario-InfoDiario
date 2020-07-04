@@ -115,7 +115,7 @@ class Database{
 
     public function queryBuscarUsuario(){
 
-        $stmt = $this->conexion->prepare("SELECT * FROM Usuario");
+        $stmt = $this->conexion->prepare("SELECT * FROM Usuario usu JOIN Rol rol ON usu.Cod_Usuario = rol.Cod_Rol");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -127,8 +127,11 @@ class Database{
                 $idUsuario= $row['Id_usuario'];
                 $nombre=$row['Nombre'];
                 $mail = $row['Mail'];
+                $nroDoc=$row['Nro_doc'];
+                $tel = $row['Telefono'];
+                $rol = $row['Descripcion_rol'];
 
-                $resultados[$i]= $idUsuario."-".$nombre."-".$mail;
+                $resultados[$i]= $idUsuario."-".$nombre."-".$mail."-".$nroDoc."-".$tel."-".$rol;
                 $i++;
             }
             // se guarda las revistas recuperados de la consulta en SESSION
@@ -155,7 +158,8 @@ class Database{
                 $mail = $row['Mail'];
                 $pass = $row['Pass'];
                 $tel = $row['Telefono'];
-                $resultado = $idUsuario."-".$nroDoc."-".$nombre."-".$mail."-".$pass."-".$tel;
+                $codUsu = $row['Cod_Usuario'];
+                $resultado = $idUsuario."-".$nroDoc."-".$nombre."-".$mail."-".$pass."-".$tel."-".$codUsu;
             }
             // se guarda el usuario a modificar en SESSION
             $_SESSION["usuariosModif"] = $resultado;

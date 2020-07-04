@@ -23,11 +23,13 @@ if(isset($_SESSION["usuarioOK"])) {
             </div>
             <table class="w3-table w3-bordered w3-centered">
                 <tr>
-                    <th>Id Usuario</th>
                     <th>Nombre</th>
                     <th>Mail</th>
+                    <th>Documento</th>
+                    <th>Telefono</th>
+                    <th>Rol</th>
                     <th>Borrar</th>
-                    <th>Modificar</th>
+                    <th>Modificar datos Usuario</th>
                 </tr>
                 <?php
                 if(isset($_SESSION["usuarios"])) {
@@ -36,14 +38,16 @@ if(isset($_SESSION["usuarioOK"])) {
                     for ($i = 1; $i <= $tam; $i++) {
                         $posUsuario = explode("-", $usuarios[$i]);
                         echo "<tr>";
-                        echo "<td>$posUsuario[0]</td>";
                         echo "<td>$posUsuario[1]</td>";
                         echo "<td>$posUsuario[2]</td>";
+                        echo "<td>$posUsuario[3]</td>";
+                        echo "<td>$posUsuario[4]</td>";
+                        echo "<td>$posUsuario[5]</td>";
                         echo "<td>";
                         echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
                         echo "</td>";
                         echo "<td>";
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='interno.php?page=buscarUsuarioById&idUsiario=$posUsuario[0]'/>";
+                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon glyphicon-user w3-center' href='interno.php?page=buscarUsuarioById&idUsiario=$posUsuario[0]'/>";
                         echo "</td>";
                         echo"</tr>";
                     }

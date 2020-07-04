@@ -148,11 +148,13 @@ switch ($page){
         $nroDoc = $_POST["nroDoc"];
         $tel = $_POST["telefono"];
         $mail = $_POST["mail"];
+        $codUsuario = $_POST["codUsuario"];
         $idUsuario = $_POST["idUsuario"];
         include_once("controller/AltaUsuarioController.php");
         $controller = new AltaUsuarioController();
-        $controller->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUser,$idUsuario);
+        $controller->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario);
         break;
+
 
     case "inicioAdm":
     default:

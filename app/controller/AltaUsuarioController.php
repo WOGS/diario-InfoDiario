@@ -23,7 +23,8 @@ class AltaUsuarioController{
         }
     }
 
-    public function executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUser,$idUsuario){
-        $this->modelo->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUser,$idUsuario);
+    public function executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario){
+        $this->modelo->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario);
+        header("Location: interno.php?page=listarUsuario");
     }
 }

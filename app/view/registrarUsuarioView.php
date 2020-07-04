@@ -1,6 +1,6 @@
 <div class="w3-card-4 w3-display-middle " style="width:50%;max-height: 120%">
     <div class="w3-container w3-teal w3-round">
-        <h2 class="w3-center">Alta<?php echo$_SESSION["usuarioAlta"] ?></h2>
+        <h2 class="w3-center">Alta <?php echo$_SESSION["usuarioAlta"] ?></h2>
     </div>
     <br>
     <form class="w3-container" name="registrar" action="<?php echo $_SESSION["actionReg"] ?>.php?page=guardarUsuario" method="post" enctype="application/x-www-form-urlencoded">
