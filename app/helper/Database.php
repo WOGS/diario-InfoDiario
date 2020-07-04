@@ -115,7 +115,7 @@ class Database{
 
     public function queryBuscarUsuario(){
 
-        $stmt = $this->conexion->prepare("SELECT * FROM Usuario");
+        $stmt = $this->conexion->prepare("SELECT * FROM Usuario usu JOIN Rol rol ON usu.Cod_Usuario = rol.Cod_Rol");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -127,8 +127,11 @@ class Database{
                 $idUsuario= $row['Id_usuario'];
                 $nombre=$row['Nombre'];
                 $mail = $row['Mail'];
+                $nroDoc=$row['Nro_doc'];
+                $tel = $row['Telefono'];
+                $rol = $row['Descripcion_rol'];
 
-                $resultados[$i]= $idUsuario."-".$nombre."-".$mail;
+                $resultados[$i]= $idUsuario."-".$nombre."-".$mail."-".$nroDoc."-".$tel."-".$rol;
                 $i++;
             }
             // se guarda las revistas recuperados de la consulta en SESSION
@@ -140,7 +143,6 @@ class Database{
     }
 
     public function executeBuscarUsuarioById($idUsuario){
-
         $stmt = $this->conexion->prepare("SELECT * FROM Usuario WHERE Id_usuario = ?");
         $stmt->bind_param('i', $idUsuario);
         $stmt->execute();
@@ -149,19 +151,19 @@ class Database{
         if($result->num_rows === 0) {
             $_SESSION["sinDatosUsuarios"] = "0";
         }else{
-            $i=1;
             while($row = $result->fetch_assoc()) {
                 $idUsuario= $row['Id_usuario'];
+                $nroDoc=$row['Nro_doc'];
                 $nombre=$row['Nombre'];
                 $mail = $row['Mail'];
-
-                $resultados[$i]= $idUsuario."-".$nombre."-".$mail;
-                $i++;
+                $pass = $row['Pass'];
+                $tel = $row['Telefono'];
+                $codUsu = $row['Cod_Usuario'];
+                $resultado = $idUsuario."-".$nroDoc."-".$nombre."-".$mail."-".$pass."-".$tel."-".$codUsu;
             }
-            // se guarda las revistas recuperados de la consulta en SESSION
-            $_SESSION["usuariosModif"] = $resultados;
+            // se guarda el usuario a modificar en SESSION
+            $_SESSION["usuariosModif"] = $resultado;
         }
-
         $stmt->close();
         $this->conexion->close();
     }
@@ -204,8 +206,9 @@ class Database{
                 $nombreSeccion=$row['NombreSeccion'];
                 $descripcion = $row['Descripcion'];
                 $codProducto= $row['Cod_producto'];
+                $estado= $row['EstadoAutorizado'];
 
-                $resultados[$i]= $codSeccion."-".$nombreSeccion."-".$descripcion."-".$codProducto;
+                $resultados[$i]= $codSeccion."-".$nombreSeccion."-".$descripcion."-".$codProducto."-".$estado;
                 $i++;
             }
             // se guarda las Secciones recuperados de la consulta en SESSION
@@ -213,6 +216,48 @@ class Database{
         }
 
         $stmt->close();
+        $this->conexion->close();
+    }
+
+    public function queryCambiarEstadoSeccion($idSeccion,$idEstado){
+
+        $estado = "";
+        if (strcmp ($idEstado , "SI" ) == 0){
+            $estado = "NO";
+        } else {
+            $estado = "SI";
+        }
+        $stmt = $this->conexion->prepare("UPDATE Seccion SET EstadoAutorizado=?  WHERE Cod_seccion=?");
+        $stmt->bind_param('si', $estado,$idSeccion);
+        
+        $stmt->execute();
+        $stmt->close();
+
+        $stmt2 = $this->conexion->prepare("UPDATE Noticia SET EstadoAutorizado=?  WHERE Cod_seccion=?");
+        $stmt2->bind_param('si', $estado,$idSeccion);
+
+        $stmt2->execute();
+        $stmt2->close();
+
+        $this->conexion->close();
+    }
+
+    public function executeEliminarSeccion($idSeccion){
+
+        $stmt = $this->conexion->prepare("DELETE FROM Noticia WHERE Cod_seccion=?");
+        $stmt->bind_param('i', $idSeccion);
+
+        $stmt->execute();
+ 
+        $stmt->close();
+        $_SESSION["noticiaEliminada"] = "si";
+
+        $stmt2 = $this->conexion->prepare("DELETE FROM Seccion WHERE Cod_seccion=?");
+        $stmt2->bind_param('i', $idSeccion);
+
+        $stmt2->execute();
+        $_SESSION["seccionEliminada"] = "si";
+        $stmt2->close();
         $this->conexion->close();
     }
 

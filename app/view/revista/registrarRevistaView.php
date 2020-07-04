@@ -7,13 +7,13 @@ if(isset($_SESSION["usuarioOK"])) {
     <br>
     <div class="w3-card-4 w3-display-middle " style="width:25%;">
         <div class="w3-container w3-teal w3-round">
-            <h2 class="w3-center">Crear Revista</h2>
+            <h2 class="w3-center">Crear Producto</h2>
         </div>
         <br>
         <form class="w3-container" name="registrar" action="interno.php?page=guardarRevista" method="post" enctype="application/x-www-form-urlencoded">
             <label>Titulo</label>
             <input class="w3-input w3-round" type="text" name="titulo"><br/>
-            <label>Nro. Revista</label>
+            <label>Nro. Producto</label>
             <input class="w3-input w3-round" type="text" name="nroRevista"><br/>
             <label>Descripcion</label>
             <textarea class="w3-input w3-round" type="text" name="descripcion" rows="4" cols="50"></textarea>

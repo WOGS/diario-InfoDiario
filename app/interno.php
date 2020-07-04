@@ -2,7 +2,7 @@
 include_once("view/partial/header.php");
 
 
-//$_SESSION["usuarioAlta"] = "Admin";
+$_SESSION["usuarioAlta"] = "Admin";
 $_SESSION["actionReg"] = "interno";
 $page = isset($_GET[ "page" ]) ? $_GET[ "page" ] : "inicioAdm";
 
@@ -64,6 +64,19 @@ switch ($page){
         $controller->executeCrearNoticia();
         break;
 
+    case "guardarNoticia":
+        $tituloNoticia = $_POST["titulo"];
+        $subtitulo= $_POST["subtitulo"];
+        $informe = $_POST["informe"];
+        $cod_contenidista = $_POST["cod_contenidista"];
+        $codProducto = $_POST["codProducto"];
+        $revistaSel = $_POST["revistaSel"];
+        $seccionSel = $_POST["seccionSel"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista,$codProducto,$revistaSel,$seccionSel);
+        break;
+
     case "guardarRevista":
         $titulo = $_POST["titulo"];
         $nroRevista = $_POST["nroRevista"];
@@ -96,15 +109,22 @@ switch ($page){
         $controller->executeGuardarSeccion($nombreSeccion,$descripcion,$codProducto,$codContenidista);
         break;
 
-    case "guardarNoticia":
-        $tituloNoticia = $_POST["titulo"];
-        $subtitulo= $_POST["subtitulo"];
-        $informe = $_POST["informe"];
-        $cod_contenidista = $_POST["cod_contenidista"];
+
+    case "cambiarEstadoSeccion":
+        $idSeccion = $_GET["idSeccion"];
+        $idEstado = $_GET["idEstado"];
         include_once("controller/RevistaController.php");
         $controller = new RevistaController();
-        $controller->executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista);
+        $controller->executeCambiarEstadoSeccion($idSeccion,$idEstado);
         break;
+
+    case "eliminarSeccion":
+        $idSeccion = $_GET["idSeccion"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeEliminarSeccion($idSeccion);
+        break;
+ 
 
     case "cambiarEstadoNoticia":
         $idNoticia = $_GET["idNoticia"];
@@ -134,19 +154,26 @@ switch ($page){
         $controller->executeEliminarUsuario($idUsuario);
         break;
 
-    case "modifUsuario":
-        $idUsuario = $_GET["idUsiario"];
-        include_once("controller/AdministradorController.php");
-        $controller = new AdministradorController();
-        $controller->executeEliminarUsuario($idUsuario);
-        break;
-
     case "buscarUsuarioById":
         $idUsuario = $_GET["idUsiario"];
         include_once("controller/AdministradorController.php");
         $controller = new AdministradorController();
         $controller->executeBuscarUsuarioById($idUsuario);
         break;
+
+    case "modifDatosUsuario":
+        $usuario = $_POST["usuario"];
+        $clave = $_POST["clave"];
+        $nroDoc = $_POST["nroDoc"];
+        $tel = $_POST["telefono"];
+        $mail = $_POST["mail"];
+        $codUsuario = $_POST["codUsuario"];
+        $idUsuario = $_POST["idUsuario"];
+        include_once("controller/AltaUsuarioController.php");
+        $controller = new AltaUsuarioController();
+        $controller->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario);
+        break;
+
 
     case "inicioAdm":
     default:

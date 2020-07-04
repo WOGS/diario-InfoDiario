@@ -37,11 +37,11 @@ CONSTRAINT PK_Suscripcion PRIMARY KEY (Cod_suscripcion),
 CONSTRAINT FK_Suscripcion_Producto FOREIGN KEY (Cod_producto) REFERENCES Producto (Cod_producto)
 );
 
-insert into Suscripcion (Cod_suscripcion,Descripcion,Cod_producto) value
-	(0,"ilimitada",1),
-	(1,"Semanal",1),
-	(2,"Mensual",2),
-	(3,"Anual",1),
+ insert into Suscripcion (Cod_suscripcion,Descripcion,Cod_producto) value
+ 	(0,"ilimitada",1),
+ 	(1,"Semanal",1),
+ 	(2,"Mensual",2),
+ 	(3,"Anual",1),
 	(4,"restringido",1);
 
 
@@ -95,21 +95,16 @@ Telefono int,
 Cod_Localidad int NOT NULL,										
 Cod_Usuario int NOT NULL,										 
 Pass varchar(50),																						
-Cod_Suscripcion int,
 CONSTRAINT PK_Usuario PRIMARY KEY (Id_usuario),
 CONSTRAINT FK_Usuario_Documento FOREIGN KEY (Cod_doc) REFERENCES Tipo_doc (Cod_doc),
-CONSTRAINT FK_Usuario_Suscripcion FOREIGN KEY (Cod_Suscripcion) REFERENCES Suscripcion (Cod_Suscripcion),
 CONSTRAINT FK_Usuario_Localidad FOREIGN KEY (Cod_Localidad) REFERENCES Localidad (Cod_Localidad),
 CONSTRAINT FK_Usuario_Rol FOREIGN KEY (Cod_Usuario) REFERENCES Rol (Cod_Rol) 
 );
 
-insert into Usuario (Nro_doc,Cod_doc,Nombre,Mail,Telefono,Cod_Localidad,Cod_Usuario,Pass,Cod_Suscripcion) value
-	(32222333,1,"Alejandro","ale@gmail.com",1144446666,1,1,"1234",0),
-	(30555000,1,"Walter","walter@gmail.com",1133445566,3,1,"1234",0),
-	(40987654,1,"Lucas","lucas@gmail.com",11444555,4,3,"1234",2),
-	(32000000,1,"Diego","diego@gmail.com",113333888,1,3,"1234",1),
-	(35123456,1,"Pepe II","pepe2@gmail.com",1533445566,3,2,"1234",0),
-	(94000111,2,"Pepe III","pepe3@gmail.com",44448888,4,2,"1234",0);
+insert into Usuario (Nro_doc,Cod_doc,Nombre,Mail,Telefono,Cod_Localidad,Cod_Usuario,Pass) value
+	(30555000,1,"Walter","walter@gmail.com",1133445566,3,1,"1234"),
+	(32000000,1,"Diego","diego@gmail.com",113333888,1,3,"1234"),
+	(35123456,1,"Pepe II","pepe2@gmail.com",1533445566,3,2,"1234");
 
 
 CREATE TABLE Diario_Revista
@@ -125,30 +120,30 @@ CONSTRAINT FK_Revista_Usuario FOREIGN KEY (Id_Admin) REFERENCES Usuario(Id_usuar
 
 
 /* Usuario conectado por red social - FALTARIA RESOLVER para integrar API´s*/
-CREATE TABLE UsuarioRedSocial    				
-(
-alias varchar(50),
-Mail varchar(64),
-Cod_Usuario int,							 
-Pass varchar(50)									
-);
+-- CREATE TABLE UsuarioRedSocial    				
+-- (
+-- alias varchar(50),
+-- Mail varchar(64),
+-- Cod_Usuario int,							 
+-- Pass varchar(50)									
+-- );
 
 CREATE TABLE Seccion     
 (
 Cod_seccion int auto_increment PRIMARY KEY,
 NombreSeccion varchar(50),
 Descripcion varchar(200),
+EstadoAutorizado varchar(2), 
 Cod_producto int NOT NULL,
 Cod_contenidista int NOT NULL,
---CONSTRAINT PK_Descripcion PRIMARY KEY (Cod_seccion),
 CONSTRAINT FK_Seccion_Producto FOREIGN KEY (Cod_producto) REFERENCES Producto (Cod_producto),
 CONSTRAINT FK_Seccion_Usuario FOREIGN KEY (Cod_contenidista) REFERENCES Usuario (Id_usuario)   
 );
-insert into Seccion (NombreSeccion,Descripcion,Cod_producto,Cod_contenidista) value
-	("POLITICA","POLITICA",1,1),
-	("SOCIEDAD","SOCIEDAD",1,2),
-	("DEPORTES","DEPORTES",2,3),
-	("TECNOLOGIA","TECNOLOGIA",2,4);
+-- insert into Seccion (NombreSeccion,Descripcion,EstadoAutorizado,Cod_producto,Cod_contenidista) value
+-- 	("POLITICA","POLITICA","NO",1,1),
+-- 	("SOCIEDAD","SOCIEDAD","NO",1,2),
+-- 	("DEPORTES","DEPORTES","NO",2,3),
+-- 	("TECNOLOGIA","TECNOLOGIA","NO",2,4);
 
 
 CREATE TABLE Cuota     
@@ -204,17 +199,16 @@ Subtitulo varchar(500) NOT NULL, /* Hace referencia al COPETE */
 informe_noticia varchar(10000) NOT NULL,
 link_noticia varchar(300),									 	
 Cod_georef int NOT NULL,									
-imagen_noticia varchar(200),									
+imagen_noticia varchar(200),		-- la path de la imagen							
 Cod_seccion int NOT NULL,
 Cod_contenidista int NOT NULL,
 EstadoAutorizado varchar(2),
 Origen varchar(10),
+Cod_revista int,
 CONSTRAINT PK_Noticia PRIMARY KEY (Cod_noticia),
 CONSTRAINT FK_Seccion_Noticia FOREIGN KEY (Cod_seccion) REFERENCES Seccion (Cod_seccion),
 CONSTRAINT FK_Noticia_Usuario FOREIGN KEY (Cod_contenidista) REFERENCES Usuario (Id_usuario),   /* ver id usuario/autor de la noticia */	
-CONSTRAINT FK_Noticia_Georeferencia FOREIGN KEY (Cod_georef) REFERENCES Georeferencia (Cod_georef)
+CONSTRAINT FK_Noticia_Georeferencia FOREIGN KEY (Cod_georef) REFERENCES Georeferencia (Cod_georef),
+CONSTRAINT FK_Noticia_Revista FOREIGN KEY (Cod_revista) REFERENCES Diario_Revista (Id)
 );
-
-
-
 

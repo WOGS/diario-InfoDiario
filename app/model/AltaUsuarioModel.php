@@ -15,4 +15,10 @@ class AltaUsuarioModel
         $this->conexion->queryInsert($sql);
         $this->conexion->close();
     }
+
+    public function executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario){
+        $sql = "UPDATE Usuario SET Nro_doc=$nroDoc,Nombre='$usuario',Mail='$mail',Telefono=$tel,Cod_Usuario=$codUsuario,Pass='$clave' WHERE Id_usuario = $idUsuario";
+        $this->conexion->queryInsert($sql);
+        $this->conexion->close();
+    }
 }

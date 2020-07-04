@@ -42,11 +42,10 @@ class RevistaController{
             include_once("view/revista/panelControlRevista.php");
         }
 
-        public function executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista){
-            $this->modelo->executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista);
+        public function executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista,$codProducto,$revistaSel,$seccionSel){
+            $this->modelo->executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista,$codProducto,$revistaSel,$seccionSel);
             header("Location: interno.php?page=admRevista");
         }
-
         
         public function executeCrearSeccion(){
             include_once("view/revista/crearSeccionView.php");
@@ -63,4 +62,15 @@ class RevistaController{
 
         }
 
+        public function executeCambiarEstadoSeccion($idSeccion,$idEstado){
+            $this->modelo->executeCambiarEstadoSeccion($idSeccion,$idEstado);
+            header("Location: interno.php?page=admRevista");
+            
+
+        }
+
+        public function executeEliminarSeccion($idSeccion){
+            $this->modelo->executeEliminarSeccion($idSeccion);
+            header("Location: interno.php?page=admRevista");
+        }
 }

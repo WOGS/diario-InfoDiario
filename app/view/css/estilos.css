@@ -1,7 +1,6 @@
 
 body {
   padding-top: 0px;
-
 }
 
 
@@ -18,7 +17,6 @@ body {
     background-color: #3c6382 !important;
 }
 
-
 .container {
   position: relative;
 }
@@ -30,3 +28,4 @@ footer {
     bottom: 0;
     left: 0;
 }
+

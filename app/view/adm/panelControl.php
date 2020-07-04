@@ -26,11 +26,13 @@ if(isset($_SESSION["usuarioOK"])) {
         echo    "</div>";
         echo    "<table class='w3-table w3-bordered w3-centered'>";
         echo        "<tr>";
-        echo            "<th>Id Usuario</th>";
         echo            "<th>Nombre</th>";
         echo            "<th>Mail</th>";
+        echo            "<th>Documento</th>";
+        echo            "<th>Telefono</th>";
+        echo            "<th>Rol</th>";
         echo            "<th>Borrar</th>";
-        echo            "<th>Modificar</th>";
+        echo            "<th>Modificar datos Usuario</th>";
         echo        "</tr>";
         }?>
                 <?php
@@ -40,14 +42,16 @@ if(isset($_SESSION["usuarioOK"])) {
                     for ($i = 1; $i <= $tam; $i++) {
                         $posUsuario = explode("-", $usuarios[$i]);
                         echo "<tr>";
-                        echo "<td>$posUsuario[0]</td>";
                         echo "<td>$posUsuario[1]</td>";
                         echo "<td>$posUsuario[2]</td>";
+                        echo "<td>$posUsuario[3]</td>";
+                        echo "<td>$posUsuario[4]</td>";
+                        echo "<td>$posUsuario[5]</td>";
                         echo "<td>";
                         echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
                         echo "</td>";
                         echo "<td>";
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='interno.php?page=modifUsuario&idUsiario=$posUsuario[0]'/>";
+                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon glyphicon-user w3-center' href='interno.php?page=buscarUsuarioById&idUsiario=$posUsuario[0]'/>";
                         echo "</td>";
                         echo"</tr>";
                     }
@@ -64,9 +68,6 @@ if(isset($_SESSION["usuarioOK"])) {
         </div>
         <br>
         <br>
-        <!--div class="w3-container w3-display-bottomright">
-            <a href="index.php" class="w3-btn w3-blue">Salir</a>
-        </div-->
     </div>
     <script>
         var close = document.getElementsByClassName("closebtn");

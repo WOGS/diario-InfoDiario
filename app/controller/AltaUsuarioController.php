@@ -22,4 +22,9 @@ class AltaUsuarioController{
             header("Location: interno.php?page=panelControl");
         }
     }
+
+    public function executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario){
+        $this->modelo->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario);
+        header("Location: interno.php?page=listarUsuario");
+    }
 }
