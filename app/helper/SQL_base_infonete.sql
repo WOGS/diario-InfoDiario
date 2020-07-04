@@ -135,19 +135,20 @@ Pass varchar(50)
 
 CREATE TABLE Seccion     
 (
-Cod_seccion int NOT NULL,
-Descripcion varchar(50),
+Cod_seccion int auto_increment PRIMARY KEY,
+NombreSeccion varchar(50),
+Descripcion varchar(200),
 Cod_producto int NOT NULL,
 Cod_contenidista int NOT NULL,
-CONSTRAINT PK_Descripcion PRIMARY KEY (Cod_seccion),
+--CONSTRAINT PK_Descripcion PRIMARY KEY (Cod_seccion),
 CONSTRAINT FK_Seccion_Producto FOREIGN KEY (Cod_producto) REFERENCES Producto (Cod_producto),
 CONSTRAINT FK_Seccion_Usuario FOREIGN KEY (Cod_contenidista) REFERENCES Usuario (Id_usuario)   
 );
-insert into Seccion (Cod_seccion,Descripcion,Cod_producto,Cod_contenidista) value
-	(1,"POLITICA",1,1),
-	(2,"SOCIEDAD",1,2),
-	(3,"DEPORTES",2,3),
-	(4,"TECNOLOGIA",2,4);
+insert into Seccion (NombreSeccion,Descripcion,Cod_producto,Cod_contenidista) value
+	("POLITICA","POLITICA",1,1),
+	("SOCIEDAD","SOCIEDAD",1,2),
+	("DEPORTES","DEPORTES",2,3),
+	("TECNOLOGIA","TECNOLOGIA",2,4);
 
 
 CREATE TABLE Cuota     

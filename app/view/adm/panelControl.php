@@ -4,37 +4,35 @@ if(isset($_SESSION["usuarioOK"])) {
     ?>
     <html>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <body>
-    <div class="w3-display-topmiddle">
-        <div class="w3-container w3-blue-grey w3-round">
-        </div>
+    <div class="w3-container w3-center">
+        <h1 class="w3-center">Panel de control Administrador</h1>
         <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h1>Panel de control Administrador</h1>
-        <br>
-        <h2>Acciones posibles</h2>
+        <h2 class="w3-center">Acciones posibles</h2>
         <div class="w3-center">
             <div class="w3-bar">
-                <a href="interno.php?page=registrar" class="w3-btn w3-red">Alta Usuario</a>
-                <a href="interno.php?page=admRevista" class="w3-btn w3-red">Administrar Contenido</a>
-                <a href="interno.php?page=listarUsuario" class="w3-btn w3-red">Listar Usuarios</a>
+                <a href="interno.php?page=registrar" class="w3-btn w3-red" style="text-decoration: none">Alta Usuario</a>
+                <a href="interno.php?page=admRevista" class="w3-btn w3-red" style="text-decoration: none">Administrar Contenido</a>
+                <a href="interno.php?page=listarUsuario" class="w3-btn w3-red" style="text-decoration: none">Listar Usuarios</a>
         </div>
         <br>
-        <div class="w3-container">
-            <h2>Lista de Usuarios</h2>
-            <table class="w3-table w3-bordered w3-centered">
-                <tr>
-                    <th>Id Usuario</th>
-                    <th>Nombre</th>
-                    <th>Mail</th>
-                    <th>Borrar</th>
-                    <th>Modificar</th>
-                </tr>
+        <?php
+        if(isset($_SESSION["usuarios"])) {
+        echo "<div class='w3-container'>";
+        echo    "<div class='w3-container w3-light-grey w3-left-align w3-margin-top w3-margin-bottom'>";
+        echo        "<h2 style='text-shadow:1px 1px 0 #444'>Lista de Usuarios</h2>";
+        echo    "</div>";
+        echo    "<table class='w3-table w3-bordered w3-centered'>";
+        echo        "<tr>";
+        echo            "<th>Id Usuario</th>";
+        echo            "<th>Nombre</th>";
+        echo            "<th>Mail</th>";
+        echo            "<th>Borrar</th>";
+        echo            "<th>Modificar</th>";
+        echo        "</tr>";
+        }?>
                 <?php
                 if(isset($_SESSION["usuarios"])) {
                     $usuarios = $_SESSION["usuarios"];

@@ -33,7 +33,7 @@ class LoginController{
                     header("Location: index.php");
                 }else{
                         //session_destroy();
-                        header("Location: interno.php");
+                        header("Location: index.php");
                     }
             }
         //}

@@ -4,13 +4,6 @@
             <div class="col-md-6">
                 <p class="text-right text-white">InfoNete S.A.</p>
             </div>
-            <!--div class="col-md-6">
-                <div class="col-md-12">
-                    <ul class="list-unstyled text-left">
-                        <li><a href="interno.php" class="text-white">ADMINISTRACION INTERNA</a></li>
-                    </ul>
-                </div>
-            </div-->
         </div>   <!-- row -->
     </div>   <!-- container -->
 </footer>

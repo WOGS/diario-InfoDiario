@@ -58,7 +58,7 @@ switch ($page){
         $controller->executeCrearRevista();
         break;
 
-        case "crearNoticia":
+    case "crearNoticia":
         include_once("controller/RevistaController.php");
         $controller = new RevistaController();
         $controller->executeCrearNoticia();
@@ -72,6 +72,28 @@ switch ($page){
         include_once("controller/RevistaController.php");
         $controller = new RevistaController();
         $controller->executeGuardarRevista($idAdmin,$titulo,$nroRevista,$descripcion);
+        break;
+
+    case "buscarSecciones":
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeBuscarSecciones();
+        break;
+
+    case "crearSeccion":
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeCrearSeccion();
+        break;
+
+    case "guardarSeccion":
+        $codProducto = $_POST["codProducto"];
+        $nombreSeccion = $_POST["nombre"];
+        $descripcion = $_POST["descripcion"];
+        $codContenidista = $_POST["cod_contenidista"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeGuardarSeccion($nombreSeccion,$descripcion,$codProducto,$codContenidista);
         break;
 
     case "guardarNoticia":
@@ -134,5 +156,5 @@ switch ($page){
         break;
 }
 
-
+//include_once("view/partial/footerInterno.php");
 ?>

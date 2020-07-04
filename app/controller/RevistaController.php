@@ -1,5 +1,6 @@
 <?php
 class RevistaController{
+    
     private $modelo;
 
         public function __construct(){
@@ -19,6 +20,7 @@ class RevistaController{
         public function executeCrearRevista(){
             include_once("view/revista/registrarRevistaView.php");
         }
+
         public function executeGuardarRevista($idAdmin,$titulo,$nroRevista,$descripcion){
             $this->modelo->executeGuardarRevista($idAdmin, $titulo, $nroRevista, $descripcion);
             header("Location: interno.php?page=admRevista");
@@ -26,7 +28,8 @@ class RevistaController{
 
         public function executeBuscarNoticias(){
             $this->modelo->executeBuscarNoticias();
-            include_once("view/revista/panelControlRevista.php");
+            //include_once("view/revista/panelControlRevista.php");
+            header("Location: interno.php?page=buscarSecciones");
         }
 
         public function executeCambiarEstadoNoticia($idNoticia,$idEstado){
@@ -34,13 +37,30 @@ class RevistaController{
             include_once("view/revista/panelControlRevista.php");
         }
 
-    public function executeEliminarNoticia($idNoticia){
-        $this->modelo->executeEliminarNoticia($idNoticia);
-        include_once("view/revista/panelControlRevista.php");
-    }
+        public function executeEliminarNoticia($idNoticia){
+            $this->modelo->executeEliminarNoticia($idNoticia);
+            include_once("view/revista/panelControlRevista.php");
+        }
 
-    public function executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista){
-        $this->modelo->executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista);
-        header("Location: interno.php?page=admRevista");
-    }
+        public function executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista){
+            $this->modelo->executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista);
+            header("Location: interno.php?page=admRevista");
+        }
+
+        
+        public function executeCrearSeccion(){
+            include_once("view/revista/crearSeccionView.php");
+        }
+
+        public function executeGuardarSeccion($nombreSeccion,$descripcion,$codProducto,$codContenidista){
+            $this->modelo->executeGuardarSeccion($nombreSeccion,$descripcion,$codProducto,$codContenidista);
+            header("Location: interno.php?page=buscarSecciones");
+            }
+
+        public function executeBuscarSecciones(){
+            $this->modelo->executeBuscarSecciones();
+            include_once("view/revista/panelControlRevista.php");
+
+        }
+
 }
