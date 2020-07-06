@@ -24,15 +24,15 @@ if(isset($_SESSION["usuarioOK"])) {
         echo    "<div class='w3-container w3-light-grey w3-left-align w3-margin-top w3-margin-bottom'>";
         echo        "<h2 style='text-shadow:1px 1px 0 #444'>Lista de Usuarios</h2>";
         echo    "</div>";
-        echo    "<table class='w3-table w3-bordered w3-centered'>";
+        echo    "<table class='w3-table w3-bordered w3-centered w3-table-all'>";
         echo        "<tr>";
         echo            "<th>Nombre</th>";
         echo            "<th>Mail</th>";
         echo            "<th>Documento</th>";
         echo            "<th>Telefono</th>";
         echo            "<th>Rol</th>";
-        echo            "<th>Borrar</th>";
         echo            "<th>Modificar datos Usuario</th>";
+        echo            "<th>Borrar</th>";
         echo        "</tr>";
         }?>
                 <?php
@@ -42,17 +42,17 @@ if(isset($_SESSION["usuarioOK"])) {
                     for ($i = 1; $i <= $tam; $i++) {
                         $posUsuario = explode("-", $usuarios[$i]);
                         echo "<tr>";
-                        echo "<td>$posUsuario[1]</td>";
-                        echo "<td>$posUsuario[2]</td>";
-                        echo "<td>$posUsuario[3]</td>";
-                        echo "<td>$posUsuario[4]</td>";
-                        echo "<td>$posUsuario[5]</td>";
-                        echo "<td>";
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
-                        echo "</td>";
-                        echo "<td>";
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon glyphicon-user w3-center' href='interno.php?page=buscarUsuarioById&idUsiario=$posUsuario[0]'/>";
-                        echo "</td>";
+                            echo "<td>$posUsuario[1]</td>";
+                            echo "<td>$posUsuario[2]</td>";
+                            echo "<td>$posUsuario[3]</td>";
+                            echo "<td>$posUsuario[4]</td>";
+                            echo "<td>$posUsuario[5]</td>";
+                            echo "<td>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon glyphicon-user w3-center' href='interno.php?page=buscarUsuarioById&idUsiario=$posUsuario[0]'/>";
+                            echo "</td>";
+                            echo "<td>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
+                            echo "</td>";
                         echo"</tr>";
                     }
                 }

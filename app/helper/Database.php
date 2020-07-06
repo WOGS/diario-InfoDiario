@@ -70,7 +70,10 @@ class Database{
 
     public function queryBuscarNoticias(){
 
-        $stmt = $this->conexion->prepare("SELECT * FROM Noticia");
+        $stmt = $this->conexion->prepare("SELECT  ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia,
+                                                         ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,
+                                                         ntc.EstadoAutorizado,ntc.Origen,ntc.Cod_revista, secc.NombreSeccion
+	                                            FROM Noticia  ntc JOIN Seccion secc ON ntc.Cod_seccion = secc.Cod_seccion");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -84,8 +87,9 @@ class Database{
                 $subTitulo = $row['Subtitulo'];
                 $estadoAutorizado = $row['EstadoAutorizado'];
                 $origen = $row['Origen'];
+                $seccion = $row['NombreSeccion'];
 
-                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen;
+                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen."-".$seccion;
                 $i++;
             }
             // se guarda las revistas recuperados de la consulta en SESSION
@@ -193,7 +197,7 @@ class Database{
 
     public function executeBuscarSecciones(){
 
-        $stmt = $this->conexion->prepare("SELECT * FROM Seccion");
+        $stmt = $this->conexion->prepare("SELECT sec.Cod_seccion,sec.NombreSeccion,sec.Descripcion,sec.EstadoAutorizado, prd.Descripcion as DescProd FROM Seccion sec JOIN Producto prd ON sec.Cod_producto = prd.Cod_producto;");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -205,10 +209,11 @@ class Database{
                 $codSeccion= $row['Cod_seccion'];
                 $nombreSeccion=$row['NombreSeccion'];
                 $descripcion = $row['Descripcion'];
-                $codProducto= $row['Cod_producto'];
                 $estado= $row['EstadoAutorizado'];
+                $descProd= $row['DescProd'];
 
-                $resultados[$i]= $codSeccion."-".$nombreSeccion."-".$descripcion."-".$codProducto."-".$estado;
+
+                $resultados[$i]= $codSeccion."-".$nombreSeccion."-".$descripcion."-".$estado."-".$descProd;
                 $i++;
             }
             // se guarda las Secciones recuperados de la consulta en SESSION

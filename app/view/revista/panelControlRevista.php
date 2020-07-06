@@ -29,14 +29,15 @@ if(isset($_SESSION["usuarioOK"])) {
             <div class="w3-container w3-light-grey w3-left-align w3-margin-bottom">
                 <h3 style="text-shadow:1px 1px 0 #444">Lista de Productos</h3>
             </div>
-            <table class="w3-table w3-bordered w3-centered">
+            <table class="w3-table w3-bordered w3-centered w3-table-all">
                 <tr>
-                    <th>id Administrador</th>
-                    <th>Titulo</th>
-                    <th>Numero</th>
-                    <th>Descripcion</th>
-                    <th>Borrar</th>
-                    <th>Modificar</th>
+                    <!--th>id Administrador</th-->
+                    <th>TITULO</th>
+                    <th>NUMERO</th>
+                    <th>DESCRIPCION</th>
+                    <th>MODIFICAR PRODUCTO</th>
+                    <th>MODIFICAR ESTADO</th>
+                    <th>BORRAR</th>
                 </tr>
                 <?php
                 if(isset($_SESSION["revistas"])) {
@@ -45,25 +46,31 @@ if(isset($_SESSION["usuarioOK"])) {
                     for ($i = 1; $i <= $tam; $i++) {
                         $posCampo = explode("-", $revistas[$i]);
                         echo "<tr>";
-                        echo "<td>$posCampo[1]</td>";
+                        //echo "<td>$posCampo[1]</td>";
                         echo "<td>$posCampo[2]</td>";
                         echo "<td>$posCampo[3]</td>";
                         echo "<td>$posCampo[4]</td>";
-                        echo "<td>";
                         if($pos[2] == 1){
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='#'/>";
+                        echo "<td>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='#'/>";
                         echo "</td>";
                         echo "<td>";
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='#'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='#'/>";
+                        echo "</td>";
+                        echo "<td>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center'href='#'/>";
                         echo "</td>";
                         } else {
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-disabled'href='#'/>";
+                            echo "<td>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
                             echo "</td>";
                             echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center w3-disabled' href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
+                            echo "</td>";
+                            echo "<td>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash  w3-center w3-disabled'href='#'/>";
                             echo "</td>";
                         }
-                        
                         echo"</tr>";
                     }
                 }
@@ -74,7 +81,6 @@ if(isset($_SESSION["usuarioOK"])) {
                             </div>";
                     unset($_SESSION["sinDatosRevistas"]);
                 }
- 
                 ?>
             </table>
         </div>
@@ -85,14 +91,15 @@ if(isset($_SESSION["usuarioOK"])) {
             <div class="w3-container w3-light-grey w3-left-align w3-margin-bottom">
                 <h3 style="text-shadow:1px 1px 0 #444">Lista de Secciones</h3>
             </div>
-            <table class="w3-table w3-bordered w3-centered">
+            <table class="w3-table w3-bordered w3-centered w3-table-all">
                 <tr>
-                    <th>Seccion</th>
-                    <th>Descripcion</th>
-                    <th>Producto</th>
-                    <th>Estado</th>
-                    <th>Borrar</th>
-                    <th>Modificar</th>
+                    <th>PRODUCTO</th>
+                    <th>SECCION</th>
+                    <th>DESCRIPCION</th>
+                    <th>PUBLICAR</th>
+                    <th>MODIFICAR SECCION</th>
+                    <th>MODIFICAR ESTADO</th>
+                    <th>BORRAR</th>
                 </tr>
                 <?php
                 if(isset($_SESSION["secciones"])) {
@@ -101,22 +108,29 @@ if(isset($_SESSION["usuarioOK"])) {
                     for ($i = 1; $i <= $tam; $i++) {
                         $posSeccion = explode("-", $secciones[$i]);
                         echo "<tr>";
+                        echo "<td>$posSeccion[4]</td>";
                         echo "<td>$posSeccion[1]</td>";
                         echo "<td>$posSeccion[2]</td>";
                         echo "<td>$posSeccion[3]</td>";
-                        echo "<td>$posSeccion[4]</td>";
-                        echo "<td>";
                         if($pos[2] == 1){
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarSeccion&idSeccion=$posSeccion[0]'/>";
+                        echo "<td>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='#'/>";
                         echo "</td>";
                         echo "<td>";
-                        echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='interno.php?page=cambiarEstadoSeccion&idSeccion=$posSeccion[0]&idEstado=$posSeccion[4]'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='interno.php?page=cambiarEstadoSeccion&idSeccion=$posSeccion[0]&idEstado=$posSeccion[3]'/>";
+                        echo "</td>";
+                        echo "<td>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center'href='interno.php?page=eliminarSeccion&idSeccion=$posSeccion[0]'/>";
                         echo "</td>";
                         } else {
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-disabled'href='#'/>";
+                            echo "<td>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
                             echo "</td>";
                             echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center w3-disabled' href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
+                            echo "</td>";
+                            echo "<td>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center w3-disabled'href='#'/>";
                             echo "</td>";
                         }
                         
@@ -140,14 +154,16 @@ if(isset($_SESSION["usuarioOK"])) {
             <div class="w3-container w3-light-grey w3-left-align w3-margin-bottom">
                 <h3 style="text-shadow:1px 1px 0 #444">Lista de Noticias</h3>
             </div>
-            <table class="w3-table w3-bordered w3-centered">
+            <table class="w3-table w3-bordered w3-centered w3-table-all">
                 <tr>
-                    <th>Titulo</th>
-                    <th>Subtitulo</th>
-                    <th>Publicar</th>
-                    <th>Origen</th>
-                    <th>Borrar</th>
-                    <th>Modificar Estado</th>
+                    <th>PRODUCTO</th>
+                    <th>SECCION</th>
+                    <th>TITULO</th>
+                    <th>SUBTITULO</th>
+                    <th>PUBLICAR</th>
+                    <th>MODIFICAR NOTICIA</th>
+                    <th>MODIFICAR ESTADO</th>
+                    <th>BORRAR</th>
                 </tr>
                 <?php
                 if(isset($_SESSION["noticias"])) {
@@ -156,22 +172,30 @@ if(isset($_SESSION["usuarioOK"])) {
                     for ($i = 1; $i <= $tam; $i++) {
                         $posNoticia = explode("-", $noticias[$i]);
                         echo "<tr>";
+                        echo "<td>$posNoticia[4]</td>";
+                        echo "<td>$posNoticia[5]</td>";
                         echo "<td>$posNoticia[1]</td>";
                         echo "<td>$posNoticia[2]</td>";
                         echo "<td>$posNoticia[3]</td>";
-                        echo "<td>$posNoticia[4]</td>";
-                        echo "<td>";
                         if($pos[2] == 1){
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarNoticia&idNoticia=$posNoticia[0]'/>";
+                            echo "<td>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center' href='#'/>";
                             echo "</td>";
                             echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center' href='interno.php?page=cambiarEstadoNoticia&idNoticia=$posNoticia[0]&idEstado=$posNoticia[3]'/>";
-                            echo "</td>"; 
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='interno.php?page=cambiarEstadoNoticia&idNoticia=$posNoticia[0]&idEstado=$posNoticia[3]'/>";
+                            echo "</td>";
+                            echo "<td>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center' href='interno.php?page=eliminarNoticia&idNoticia=$posNoticia[0]'/>";
+                            echo "</td>";
                             } else {
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-disabled'href='#'/>";
+                                echo "<td>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
                                 echo "</td>";
                                 echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-search w3-center w3-disabled' href='#'/>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
+                                echo "</td>";
+                                echo "<td>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center  w3-disabled'href='#'/>";
                                 echo "</td>";
                         }
                         echo"</tr>";

@@ -161,6 +161,27 @@ switch ($page){
         $controller->executeBuscarUsuarioById($idUsuario);
         break;
 
+    case "buscarNoticiaById":
+        $idUsuario = $_GET["idNoticia"];
+        include_once("controller/AdministradorController.php");
+        $controller = new AdministradorController();
+        $controller->executeBuscarUsuarioById($idUsuario);
+        break;
+
+    case "buscarSeccionById":
+        $idUsuario = $_GET["idSeccion"];
+        include_once("controller/AdministradorController.php");
+        $controller = new AdministradorController();
+        $controller->executeBuscarUsuarioById($idUsuario);
+        break;
+
+    case "buscarProductoById":
+        $idUsuario = $_GET["idProducto"];
+        include_once("controller/AdministradorController.php");
+        $controller = new AdministradorController();
+        $controller->executeBuscarUsuarioById($idUsuario);
+        break;
+
     case "modifDatosUsuario":
         $usuario = $_POST["usuario"];
         $clave = $_POST["clave"];
