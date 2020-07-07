@@ -197,7 +197,8 @@ class Database{
 
     public function executeBuscarSecciones(){
 
-        $stmt = $this->conexion->prepare("SELECT sec.Cod_seccion,sec.NombreSeccion,sec.Descripcion,sec.EstadoAutorizado, prd.Descripcion as DescProd FROM Seccion sec JOIN Producto prd ON sec.Cod_producto = prd.Cod_producto;");
+        $stmt = $this->conexion->prepare("SELECT sec.Cod_seccion,sec.NombreSeccion,sec.Descripcion,sec.EstadoAutorizado, prd.Descripcion as DescProd 
+                                                    FROM Seccion sec JOIN Producto prd ON sec.Cod_producto = prd.Cod_producto;");
         $stmt->execute();
         $result = $stmt->get_result();
 

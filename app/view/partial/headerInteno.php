@@ -23,7 +23,7 @@ if(isset($_SESSION["usuarioOK"])) {
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
+        <div class="container-fluid">
             <a class="navbar-brand" href="index.php">
                 <span>
                     <svg class="bi bi-info-square" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

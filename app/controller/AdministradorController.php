@@ -9,9 +9,9 @@ class AdministradorController
             $this->modelo = new AdminModel();
         }
 
-        public function execute(){
+       /* public function execute(){
             include_once("view/registrarAdministradorView.php");
-        }
+        }*/
 
         public function executeListarUsuario(){
             $this->modelo->executeListarUsuario();

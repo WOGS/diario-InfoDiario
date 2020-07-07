@@ -28,7 +28,6 @@ switch ($page){
         $tel = $_POST["telefono"];
         $mail = $_POST["mail"];
         $codUser = 3;
-
         include_once("controller/AltaUsuarioController.php");
         $controller = new AltaUsuarioController();
         $controller->executeRegistarUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUser);

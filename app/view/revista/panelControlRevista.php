@@ -8,13 +8,13 @@ if(isset($_SESSION["usuarioOK"])) {
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <body>
     <div class="w3-container w3-center">
-        <h1 class="w3-center">Panel de control Revista</h1>
+        <h1 class="w3-center">Panel de control Productos</h1>
         <h2 class="w3-margin-left w3-margin-bottom" style="margin-top: 2%">Acciones posibles</h2>
         <div class="w3-center">
             <div class="w3-bar">
             <?php
             if($pos[2] == 1){?>
-                <a href="interno.php?page=crearRevista" class="w3-btn w3-red" style="text-decoration: none">Crear nueva Revista</a>
+                <a href="interno.php?page=crearRevista" class="w3-btn w3-red" style="text-decoration: none">Crear nuevo Producto</a>
             <?php }
             ?>
                 <a href="interno.php?page=crearSeccion" class="w3-btn w3-red" style="text-decoration: none">Crear Seccion</a>
