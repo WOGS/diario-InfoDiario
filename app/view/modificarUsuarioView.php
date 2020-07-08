@@ -15,11 +15,13 @@
         <label>Telefono </label><input class="w3-input w3-round" type="text" name="telefono" value="<?php echo $pos[5]?>"><br/>
         <label>mail </label><input class="w3-input w3-round" type="email" name="mail" value="<?php echo $pos[3]?>"><br/>
         <input type="hidden" name="idUsuario" value="<?php echo $pos[0]?>">
+        <?php
+        if(strcmp($_SESSION["usuarioAlta"],"Admin")){ ?>
         <div class="container">
             <label>Tipo de usuario:
         </div>
         <?php
-        if($pos[6]==1){ ?>
+                if($pos[6]==1){ ?>
             <div class="container w3-margin-bottom">
                 <input id="lector" class="w3-radio w3-margin-bottom" type="radio" name="codUsuario" value="3">
                 <label>Lector</label>
@@ -45,11 +47,18 @@
             <input id="admin" class="w3-radio w3-margin-bottom" type="radio" name="codUsuario" value="1">
             <label>Administrador</label>
         </div>
-    <?php } ?>
+    <?php }  } else { ?>
+        <input type="hidden" name="codUsuario" value="<?php echo $pos[6]?>">
+    <?php  }?>
 
         <div class="container">
             <input class="w3-button w3-blue-grey w3-round w3-center" type="submit" name="boton" value="ENVIAR">
+            <?php
+            if(strcmp($_SESSION["usuarioAlta"],"Admin")){ ?>
             <a href="interno.php?page=panelControl" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar">CANCELAR</a>
+            <?php } else{ ?>
+            <a href="index.php?page=panelUsuario" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar">CANCELAR</a>
+            <?php } ?>
         </div>
     </form>
 </div>

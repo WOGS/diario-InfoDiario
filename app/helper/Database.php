@@ -70,10 +70,8 @@ class Database{
 
     public function queryBuscarNoticias(){
 
-        $stmt = $this->conexion->prepare("SELECT  ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia,
-                                                         ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,
-                                                         ntc.EstadoAutorizado,ntc.Origen,ntc.Cod_revista, secc.NombreSeccion
-	                                            FROM Noticia  ntc JOIN Seccion secc ON ntc.Cod_seccion = secc.Cod_seccion");
+        $stmt = $this->conexion->prepare("SELECT  ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia,ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,ntc.EstadoAutorizado,ntc.Origen,ntc.Cod_revista, secc.NombreSeccion
+	        FROM Noticia  ntc JOIN Seccion secc ON ntc.Cod_seccion = secc.Cod_seccion");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -166,7 +164,7 @@ class Database{
                 $resultado = $idUsuario."-".$nroDoc."-".$nombre."-".$mail."-".$pass."-".$tel."-".$codUsu;
             }
             // se guarda el usuario a modificar en SESSION
-            $_SESSION["usuariosModif"] = $resultado;
+            $_SESSION["usuariosModif"] = $resultado;           
         }
         $stmt->close();
         $this->conexion->close();
