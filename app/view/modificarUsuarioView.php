@@ -16,7 +16,7 @@
         <label>mail </label><input class="w3-input w3-round" type="email" name="mail" value="<?php echo $pos[3]?>"><br/>
         <input type="hidden" name="idUsuario" value="<?php echo $pos[0]?>">
         <?php
-        if(strcmp($_SESSION["usuarioAlta"],"Admin")){ ?>
+        if(strcmp($_SESSION["usuarioAlta"],"Admin") == 0){ ?>
         <div class="container">
             <label>Tipo de usuario:
         </div>
@@ -54,7 +54,7 @@
         <div class="container">
             <input class="w3-button w3-blue-grey w3-round w3-center" type="submit" name="boton" value="ENVIAR">
             <?php
-            if(strcmp($_SESSION["usuarioAlta"],"Admin")){ ?>
+            if(strcmp($_SESSION["usuarioAlta"],"Admin")== 0){ ?>
             <a href="interno.php?page=panelControl" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar">CANCELAR</a>
             <?php } else{ ?>
             <a href="index.php?page=panelUsuario" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar">CANCELAR</a>

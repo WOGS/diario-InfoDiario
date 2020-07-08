@@ -39,6 +39,13 @@ switch ($page){
        $controller->execute();       
        break;
 
+    case "buscarUsuarioById":
+        $idUsuario = $_GET["idUsiario"];
+        include_once("controller/AdministradorController.php");
+        $controller = new AdministradorController();
+        $controller->executeBuscarUsuarioById($idUsuario);
+        break;
+
     case "inicio":
     default:
         include_once("controller/InicioController.php");

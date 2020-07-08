@@ -10,7 +10,8 @@ class UsuarioController{
 
         public function execute(){
           //  $this->modelo->executeBuscarRevista();
-            header("Location: index.php?page=panelUsuario");
+           // header("Location:view/usuario/panelControlUsuario.php");
+            include_once("view/usuario/panelControlUsuario.php");
         }
 
         
