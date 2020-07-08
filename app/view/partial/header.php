@@ -51,7 +51,11 @@ if(isset($_SESSION["usuarioOK"])) {
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <?php if(isset($_SESSION["usuarioOK"])) {
-                     ?>
+                    if($pos[2] == 3){
+                    ?>
+                    <li class="nav-item">                       
+                        <a class="nav-link" href="index.php?page=panelUsuario">Suscripciones</a>
+                    </li>  <?php } ?>
                     <li class="nav-item">
                         <a class="nav-link" href="view/logOut.php">Salir</a>
                     </li>

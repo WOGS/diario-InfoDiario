@@ -33,6 +33,12 @@ switch ($page){
         $controller->executeRegistarUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUser);
         break;
 
+    case "panelUsuario":
+       include_once("controller/UsuarioController.php");
+       $controller = new UsuarioController();
+       $controller->execute();       
+       break;
+
     case "inicio":
     default:
         include_once("controller/InicioController.php");

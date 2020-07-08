@@ -15,4 +15,7 @@ class InicioController
     public function executePanelControl(){
         include_once("view/adm/panelControl.php");
     }
+    public function executePanelUsuario(){
+        include_once("view/usuario/panelControlUsuario.php");
+    }
 }

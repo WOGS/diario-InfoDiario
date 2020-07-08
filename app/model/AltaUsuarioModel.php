@@ -20,5 +20,6 @@ class AltaUsuarioModel
         $sql = "UPDATE Usuario SET Nro_doc=$nroDoc,Nombre='$usuario',Mail='$mail',Telefono=$tel,Cod_Usuario=$codUsuario,Pass='$clave' WHERE Id_usuario = $idUsuario";
         $this->conexion->queryInsert($sql);
         $this->conexion->close();
-    }
+        $_SESSION["usuarioActualizado"] = "ok";        
+    }  
 }
