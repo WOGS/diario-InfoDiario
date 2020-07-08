@@ -267,6 +267,29 @@ class Database{
         $this->conexion->close();
     }
 
+    public function executeBuscarNoticiaById($idNoticia){
+        $stmt = $this->conexion->prepare("SELECT * FROM Noticia WHERE Cod_noticia = ?");
+        $stmt->bind_param('i', $idNoticia);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinDatosNoticias"] = "0";
+        }else{
+            while($row = $result->fetch_assoc()) {
+                $idNoticia= $row['Cod_noticia'];
+                $titulo=$row['Titulo'];
+                $subtitulo=$row['Subtitulo'];
+                $contenido = $row['informe_noticia'];
+                $resultado = $idNoticia."-".$titulo."-".$subtitulo."-".$contenido;
+            }
+            // se guarda el usuario a modificar en SESSION
+            $_SESSION["noticiaModif"] = $resultado;
+        }
+        $stmt->close();
+        $this->conexion->close();
+    }
+
     public function queryInsert($sql){
         mysqli_query($this->conexion, $sql);
     }

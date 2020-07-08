@@ -162,13 +162,13 @@ switch ($page){
         break;
 
     case "buscarNoticiaById":
-        $idUsuario = $_GET["idNoticia"];
-        include_once("controller/AdministradorController.php");
-        $controller = new AdministradorController();
-        $controller->executeBuscarUsuarioById($idUsuario);
+        $idNoticia = $_GET["idNoticia"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeBuscarNoticiaById($idNoticia);
         break;
 
-    case "buscarSeccionById":
+ /*   case "buscarSeccionById":
         $idUsuario = $_GET["idSeccion"];
         include_once("controller/AdministradorController.php");
         $controller = new AdministradorController();
@@ -177,10 +177,10 @@ switch ($page){
 
     case "buscarProductoById":
         $idUsuario = $_GET["idProducto"];
-        include_once("controller/AdministradorController.php");
-        $controller = new AdministradorController();
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
         $controller->executeBuscarUsuarioById($idUsuario);
-        break;
+        break;*/
 
     case "modifDatosUsuario":
         $usuario = $_POST["usuario"];

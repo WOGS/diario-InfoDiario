@@ -63,4 +63,9 @@ class RevistaModel
     public function executeEliminarSeccion($idSeccion){
         $this->conexion->executeEliminarSeccion($idSeccion);
     }
+
+    public function executeBuscarNoticiaById($idNoticia){
+        $this->conexion->executeBuscarNoticiaById($idNoticia);
+    }
+
 }
