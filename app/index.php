@@ -46,6 +46,12 @@ switch ($page){
         $controller->executeBuscarUsuarioById($idUsuario);
         break;
 
+    case "abrirSuscripcion":
+        include_once("controller/UsuarioController.php");
+        $controller = new UsuarioController();
+        $controller->executeAbrirSuscripcion();
+        break;
+
     case "inicio":
     default:
         include_once("controller/InicioController.php");

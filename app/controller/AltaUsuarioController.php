@@ -26,7 +26,7 @@ class AltaUsuarioController{
     public function executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario){
         $this->modelo->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario);
 
-        if(strcmp($_SESSION["usuarioAlta"],"Usuario")){
+        if(strcmp($_SESSION["usuarioAlta"],"Usuario")==0){
             header("Location: index.php?page=panelUsuario");
         }else{
             header("Location: interno.php?page=listarUsuario");
