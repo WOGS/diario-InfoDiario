@@ -75,6 +75,34 @@ class RevistaController{
 
         public function executeBuscarNoticiaById($idNoticia){
             $this->modelo->executeBuscarNoticiaById($idNoticia);
-            include_once("view/modificarUsuarioView.php");
+            include_once("view/revista/modificarNoticiaView.php");
         }
+
+        public function executeModificarNoticia($idNoticia,$titulo,$subtitulo,$informe){
+            $this->modelo->executeModificarNoticia($idNoticia,$titulo,$subtitulo,$informe);
+            header("Location: interno.php?page=admRevista");
+        }
+
+        public function executeBuscarSeccionById($idSeccion){
+            $this->modelo->executeBuscarSeccionById($idSeccion);
+            include_once("view/revista/modificarSeccionView.php");
+        }
+
+        public function executeModificarSeccion($idSeccion,$nombre,$descripcion){
+            $this->modelo->executeModificarSeccion($idSeccion,$nombre,$descripcion);
+            header("Location: interno.php?page=admRevista");
+        }
+
+    public function executeBuscarProductoById($idProducto){
+        $this->modelo->executeBuscarProductoById($idProducto);
+        include_once("view/revista/modificarProductoView.php");
+    }
+
+    public function executeModificarProducto($idProducto,$titulo,$descripcion){
+        $this->modelo->executeModificarProducto($idProducto,$titulo,$descripcion);
+        header("Location: interno.php?page=admRevista");
+    }
+
+
+
 }

@@ -18,7 +18,6 @@ class AdminModel
     }
 
     public function executeBuscarUsuarioById($idUsuario){
-
         $this->conexion->executeBuscarUsuarioById($idUsuario);
     }
 

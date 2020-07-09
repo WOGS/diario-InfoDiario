@@ -31,12 +31,11 @@ if(isset($_SESSION["usuarioOK"])) {
             </div>
             <table class="w3-table w3-bordered w3-centered w3-table-all">
                 <tr>
-                    <!--th>id Administrador</th-->
                     <th>TITULO</th>
-                    <th>NUMERO</th>
                     <th>DESCRIPCION</th>
+                    <th>NUMERO</th>
                     <th>MODIFICAR PRODUCTO</th>
-                    <th>MODIFICAR ESTADO</th>
+                    <!--th>MODIFICAR ESTADO</th-->
                     <th>BORRAR</th>
                 </tr>
                 <?php
@@ -46,17 +45,16 @@ if(isset($_SESSION["usuarioOK"])) {
                     for ($i = 1; $i <= $tam; $i++) {
                         $posCampo = explode("-", $revistas[$i]);
                         echo "<tr>";
-                        //echo "<td>$posCampo[1]</td>";
                         echo "<td>$posCampo[2]</td>";
-                        echo "<td>$posCampo[3]</td>";
                         echo "<td>$posCampo[4]</td>";
+                        echo "<td>$posCampo[3]</td>";
                         if($pos[2] == 1){
                         echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='#'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='interno.php?page=buscarProductoById&idProducto=$posCampo[0]'/>";
                         echo "</td>";
-                        echo "<td>";
+                        /*echo "<td>";
                             echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='#'/>";
-                        echo "</td>";
+                        echo "</td>";*/
                         echo "<td>";
                             echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center'href='#'/>";
                         echo "</td>";
@@ -64,9 +62,9 @@ if(isset($_SESSION["usuarioOK"])) {
                             echo "<td>";
                                 echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
                             echo "</td>";
-                            echo "<td>";
+                            /*echo "<td>";
                                 echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
-                            echo "</td>";
+                            echo "</td>";*/
                             echo "<td>";
                                 echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash  w3-center w3-disabled'href='#'/>";
                             echo "</td>";
@@ -84,9 +82,7 @@ if(isset($_SESSION["usuarioOK"])) {
                 ?>
             </table>
         </div>
-                <br>
-                <br>
-                <br>
+                <br><br><br>
         <div class="w3-container">
             <div class="w3-container w3-light-grey w3-left-align w3-margin-bottom">
                 <h3 style="text-shadow:1px 1px 0 #444">Lista de Secciones</h3>
@@ -114,7 +110,7 @@ if(isset($_SESSION["usuarioOK"])) {
                         echo "<td>$posSeccion[3]</td>";
                         if($pos[2] == 1){
                         echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='#'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='interno.php?page=buscarSeccionById&idSeccion=$posSeccion[0]'/>";
                         echo "</td>";
                         echo "<td>";
                             echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='interno.php?page=cambiarEstadoSeccion&idSeccion=$posSeccion[0]&idEstado=$posSeccion[3]'/>";
@@ -179,7 +175,7 @@ if(isset($_SESSION["usuarioOK"])) {
                         echo "<td>$posNoticia[3]</td>";
                         if($pos[2] == 1){
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center' href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center' href='interno.php?page=buscarNoticiaById&idNoticia=$posNoticia[0]'/>";
                             echo "</td>";
                             echo "<td>";
                                 echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='interno.php?page=cambiarEstadoNoticia&idNoticia=$posNoticia[0]&idEstado=$posNoticia[3]'/>";

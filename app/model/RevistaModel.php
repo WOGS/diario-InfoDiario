@@ -68,4 +68,32 @@ class RevistaModel
         $this->conexion->executeBuscarNoticiaById($idNoticia);
     }
 
+    public function executeModificarNoticia($idNoticia,$titulo,$subtitulo,$informe){
+        $sql = "UPDATE Noticia SET Titulo='$titulo',Subtitulo ='$subtitulo',informe_noticia='$informe'  WHERE Cod_noticia = $idNoticia";
+        $this->conexion->queryInsert($sql);
+        $this->conexion->close();
+        $_SESSION["noticiaActualizada"] = "ok";
+    }
+
+    public function executeBuscarSeccionById($idSeccion){
+        $this->conexion->executeBuscarSeccionById($idSeccion);
+    }
+
+    public function executeModificarSeccion($idSeccion,$nombre,$descripcion){
+        $sql = "UPDATE Seccion SET NombreSeccion='$nombre',Descripcion ='$descripcion' WHERE Cod_seccion = $idSeccion";
+        $this->conexion->queryInsert($sql);
+        $this->conexion->close();
+        $_SESSION["seccionActualizada"] = "ok";
+    }
+
+    public function executeBuscarProductoById($idProducto){
+        $this->conexion->executeBuscarProductoById($idProducto);
+    }
+
+    public function executeModificarProducto($idProducto,$titulo,$descripcion){
+        $sql = "UPDATE Diario_Revista SET Titulo='$titulo',Descripcion ='$descripcion' WHERE Id = $idProducto";
+        $this->conexion->queryInsert($sql);
+        $this->conexion->close();
+        $_SESSION["productoActualizado"] = "ok";
+    }
 }

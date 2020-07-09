@@ -161,27 +161,6 @@ switch ($page){
         $controller->executeBuscarUsuarioById($idUsuario);
         break;
 
-    case "buscarNoticiaById":
-        $idNoticia = $_GET["idNoticia"];
-        include_once("controller/RevistaController.php");
-        $controller = new RevistaController();
-        $controller->executeBuscarNoticiaById($idNoticia);
-        break;
-
- /*   case "buscarSeccionById":
-        $idUsuario = $_GET["idSeccion"];
-        include_once("controller/AdministradorController.php");
-        $controller = new AdministradorController();
-        $controller->executeBuscarUsuarioById($idUsuario);
-        break;
-
-    case "buscarProductoById":
-        $idUsuario = $_GET["idProducto"];
-        include_once("controller/RevistaController.php");
-        $controller = new RevistaController();
-        $controller->executeBuscarUsuarioById($idUsuario);
-        break;*/
-
     case "modifDatosUsuario":
         $usuario = $_POST["usuario"];
         $clave = $_POST["clave"];
@@ -195,6 +174,54 @@ switch ($page){
         $controller->executeModifUsuario($usuario,$clave,$nroDoc,$tel,$mail,$codUsuario,$idUsuario);
         break;
 
+    case "buscarNoticiaById":
+        $idNoticia = $_GET["idNoticia"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeBuscarNoticiaById($idNoticia);
+        break;
+
+    case "modificarNoticia":
+        $idNoticia = $_POST["idNoticia"];
+        $titulo = $_POST["titulo"];
+        $subtitulo = $_POST["subtitulo"];
+        $informe = $_POST["informe"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeModificarNoticia($idNoticia,$titulo,$subtitulo,$informe);
+        break;
+
+    case "buscarSeccionById":
+        $idSeccion = $_GET["idSeccion"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeBuscarSeccionById($idSeccion);
+        break;
+
+    case "modificarSeccion":
+        $idSeccion = $_POST["idSeccion"];
+        $nombre = $_POST["nombre"];
+        $descripcion = $_POST["descripcion"];
+         include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeModificarSeccion($idSeccion,$nombre,$descripcion);
+        break;
+
+    case "buscarProductoById":
+        $idProducto = $_GET["idProducto"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeBuscarProductoById($idProducto);
+        break;
+
+    case "modificarProducto":
+        $idProducto = $_POST["idProducto"];
+        $titulo = $_POST["titulo"];
+        $descripcion = $_POST["descripcion"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeModificarProducto($idProducto,$titulo,$descripcion);
+        break;
 
     case "inicioAdm":
     default:

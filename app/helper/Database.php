@@ -1,7 +1,6 @@
 <?php
 
 class Database{
-
     private $conexion;
 
     public function __construct(){
@@ -10,7 +9,6 @@ class Database{
         $username = $configuracion["username"];
         $dbname =  $configuracion["dbname"];
         $password =  $configuracion["password"];
-
         $conn = new mysqli($servername, $username, $password);
 
         if ($conn->connect_error) {
@@ -30,7 +28,6 @@ class Database{
         if($result->num_rows === 0) {
             $_SESSION["loginError"] = "error";
          }
-
         while($row = $result->fetch_assoc()) {
             $resultado = $row['Id_usuario']."-".$row['Nombre']."-".$row['Cod_Usuario'];
         }
@@ -41,7 +38,6 @@ class Database{
     }
     
     public function queryBuscarRevistas(){
-
         $stmt = $this->conexion->prepare("SELECT * FROM Diario_Revista");
         $stmt->execute();
         $result = $stmt->get_result();
@@ -63,13 +59,11 @@ class Database{
             // se guarda las revistas recuperados de la consulta en SESSION
             $_SESSION["revistas"] = $resultados;
         }
-
         $stmt->close();
         $this->conexion->close();
     }
 
     public function queryBuscarNoticias(){
-
         $stmt = $this->conexion->prepare("SELECT  ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia,ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,ntc.EstadoAutorizado,ntc.Origen,ntc.Cod_revista, secc.NombreSeccion
 	        FROM Noticia  ntc JOIN Seccion secc ON ntc.Cod_seccion = secc.Cod_seccion");
         $stmt->execute();
@@ -93,13 +87,11 @@ class Database{
             // se guarda las revistas recuperados de la consulta en SESSION
             $_SESSION["noticias"] = $resultados;
         }
-
         $stmt->close();
         $this->conexion->close();
     }
 
     public function queryCambiarEstado($idNoticia,$idEstado){
-
         $estado = "";
         if (strcmp ($idEstado , "SI" ) == 0){
             $estado = "NO";
@@ -111,12 +103,10 @@ class Database{
         
         $stmt->execute();
         $stmt->close();
-
         $this->queryBuscarNoticias();
     }
 
     public function queryBuscarUsuario(){
-
         $stmt = $this->conexion->prepare("SELECT * FROM Usuario usu JOIN Rol rol ON usu.Cod_Usuario = rol.Cod_Rol");
         $stmt->execute();
         $result = $stmt->get_result();
@@ -132,14 +122,12 @@ class Database{
                 $nroDoc=$row['Nro_doc'];
                 $tel = $row['Telefono'];
                 $rol = $row['Descripcion_rol'];
-
                 $resultados[$i]= $idUsuario."-".$nombre."-".$mail."-".$nroDoc."-".$tel."-".$rol;
                 $i++;
             }
             // se guarda las revistas recuperados de la consulta en SESSION
             $_SESSION["usuarios"] = $resultados;
         }
-
         $stmt->close();
         $this->conexion->close();
     }
@@ -182,7 +170,6 @@ class Database{
     }
 
     public function executeEliminarUsuario($idUsuario){
-
         $stmt = $this->conexion->prepare("DELETE FROM Usuario WHERE Id_usuario=?");
         $stmt->bind_param('i', $idUsuario);
 
@@ -192,9 +179,7 @@ class Database{
         $this->queryBuscarUsuario();
     }
 
-
     public function executeBuscarSecciones(){
-
         $stmt = $this->conexion->prepare("SELECT sec.Cod_seccion,sec.NombreSeccion,sec.Descripcion,sec.EstadoAutorizado, prd.Descripcion as DescProd 
                                                     FROM Seccion sec JOIN Producto prd ON sec.Cod_producto = prd.Cod_producto;");
         $stmt->execute();
@@ -210,21 +195,17 @@ class Database{
                 $descripcion = $row['Descripcion'];
                 $estado= $row['EstadoAutorizado'];
                 $descProd= $row['DescProd'];
-
-
                 $resultados[$i]= $codSeccion."-".$nombreSeccion."-".$descripcion."-".$estado."-".$descProd;
                 $i++;
             }
             // se guarda las Secciones recuperados de la consulta en SESSION
             $_SESSION["secciones"] = $resultados;
         }
-
         $stmt->close();
         $this->conexion->close();
     }
 
     public function queryCambiarEstadoSeccion($idSeccion,$idEstado){
-
         $estado = "";
         if (strcmp ($idEstado , "SI" ) == 0){
             $estado = "NO";
@@ -233,24 +214,19 @@ class Database{
         }
         $stmt = $this->conexion->prepare("UPDATE Seccion SET EstadoAutorizado=?  WHERE Cod_seccion=?");
         $stmt->bind_param('si', $estado,$idSeccion);
-        
         $stmt->execute();
         $stmt->close();
 
         $stmt2 = $this->conexion->prepare("UPDATE Noticia SET EstadoAutorizado=?  WHERE Cod_seccion=?");
         $stmt2->bind_param('si', $estado,$idSeccion);
-
         $stmt2->execute();
         $stmt2->close();
-
         $this->conexion->close();
     }
 
     public function executeEliminarSeccion($idSeccion){
-
         $stmt = $this->conexion->prepare("DELETE FROM Noticia WHERE Cod_seccion=?");
         $stmt->bind_param('i', $idSeccion);
-
         $stmt->execute();
  
         $stmt->close();
@@ -258,7 +234,6 @@ class Database{
 
         $stmt2 = $this->conexion->prepare("DELETE FROM Seccion WHERE Cod_seccion=?");
         $stmt2->bind_param('i', $idSeccion);
-
         $stmt2->execute();
         $_SESSION["seccionEliminada"] = "si";
         $stmt2->close();
@@ -281,8 +256,51 @@ class Database{
                 $contenido = $row['informe_noticia'];
                 $resultado = $idNoticia."-".$titulo."-".$subtitulo."-".$contenido;
             }
-            // se guarda el usuario a modificar en SESSION
+            // se guarda la noticia a modificar en SESSION
             $_SESSION["noticiaModif"] = $resultado;
+        }
+        $stmt->close();
+        $this->conexion->close();
+    }
+
+    public function executeBuscarSeccionById($idSeccion){
+        $stmt = $this->conexion->prepare("SELECT * FROM Seccion WHERE Cod_seccion = ?");
+        $stmt->bind_param('i', $idSeccion);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinDatosSeccion"] = "0";
+        }else{
+            while($row = $result->fetch_assoc()) {
+                $idSeccion= $row['Cod_seccion'];
+                $nombreSeccion=$row['NombreSeccion'];
+                $descripcion=$row['Descripcion'];
+                $resultado = $idSeccion."-".$nombreSeccion."-".$descripcion;
+            }
+            // se guarda la seccion a modificar en SESSION
+            $_SESSION["seccionModif"] = $resultado;
+        }
+        $stmt->close();
+        $this->conexion->close();
+    }
+    public function executeBuscarProductoById($idProducto){
+        $stmt = $this->conexion->prepare("SELECT * FROM Diario_Revista WHERE Id = ?");
+        $stmt->bind_param('i', $idProducto);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinDatosProducto"] = "0";
+        }else{
+            while($row = $result->fetch_assoc()) {
+                $idProducto= $row['Id'];
+                $titulo=$row['Titulo'];
+                $descripcion=$row['Descripcion'];
+                $resultado = $idProducto."-".$titulo."-".$descripcion;
+            }
+            // se guarda el producto a modificar en SESSION
+            $_SESSION["productoModif"] = $resultado;
         }
         $stmt->close();
         $this->conexion->close();
@@ -295,6 +313,4 @@ class Database{
     public function close(){
         mysqli_close($this->conexion);
     }
-
-
 }
