@@ -77,4 +77,9 @@ class RevistaController{
             $this->modelo->executeBuscarNoticiaById($idNoticia);
             include_once("view/modificarUsuarioView.php");
         }
+
+        public function executeBuscarNoticiaImagenById($idNoticia){
+            $this->modelo->executeBuscarNoticiaImagenById($idNoticia);
+            include_once("view/revista/crearImagenNoticia.php");
+        }
 }
