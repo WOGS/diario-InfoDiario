@@ -306,6 +306,31 @@ class Database{
         $this->conexion->close();
     }
 
+    public function executeBuscarPlanes(){
+        $stmt = $this->conexion->prepare("SELECT * FROM Plan");
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinDatosPlanes"] = "0";
+        }else{
+            $i=1;
+            while($row = $result->fetch_assoc()) {
+                $codPlan= $row['Cod_plan'];
+                $periodo= $row['Periodo'];
+                $detalle=$row['Detalle'];
+                $precio = $row['Precio'];
+
+                $resultados[$i]= $codPlan."-".$periodo."-".$detalle."-".$precio;
+                $i++;
+            }
+            // se guarda las revistas recuperados de la consulta en SESSION
+            $_SESSION["planes"] = $resultados;
+        }
+        $stmt->close();
+        $this->conexion->close();
+    }
+
     public function queryInsert($sql){
         mysqli_query($this->conexion, $sql);
     }

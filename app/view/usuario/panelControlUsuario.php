@@ -54,10 +54,9 @@ if(isset($_SESSION["usuarioOK"])) {
                     <a href="index.php?page=buscarUsuarioById&idUsiario=<?php echo $pos[0]?>" class="w3-btn w3-red" style="text-decoration: none">Editar Mis Datos</a>
                     </div>
                 </div>
-                <br><br><br>
                 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
                     <h1 class="display-4">Planes</h1>
-                    <p class="lead"> aca poner algo copado </p>
+                    <p class="lead"> Elegí tus publicaciones de InfoNete favoritas y accedé al mejor análisis periodístico en todo momento y lugar </p>
                 </div>
                 <div class="container">
                     <div class="card-deck mb-3 text-center">
@@ -69,21 +68,21 @@ if(isset($_SESSION["usuarioOK"])) {
                             $posCampo = explode("-", $revistas[$i])?>
                             <div class="card mb-4 shadow-sm">
                                 <div class="card-header">
-                                    <h4 class="my-0 font-weight-normal">1 mes</h4>
+                                  <h3 class="my-0 font-weight-normal"><?php echo $posCampo[2]?></h3> 
                                 </div>
-                                <div class="card-body">
-                                    <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
+                                <div class="card-body d-flex flex-column">
+                                     <!--  <p class="card-title pricing-card-title"> </p> -->
                                     <ul class="list-unstyled mt-3 mb-4">
-                                        <li><?php echo $posCampo[2]?></li>
-                                        <li><?php echo $posCampo[3]?></li>
-                                        <li><?php echo$posCampo[4]?></li>
+                                        <li> <?php echo $posCampo[4]?> </li>
+                                        <li> </li>
+                                        <li> </li>
                                     </ul>
-                                    <a type="button" class="btn btn-lg btn-block btn-primary" href="index.php?page=abrirSuscripcion">Suscribirse</a>
+                                    <a type="button" class="btn btn-lg btn-block btn-primary mt-auto" href="index.php?page=abrirSuscripcion&idProducto=<?php echo $posCampo[0]?>">Suscribirse</a>
                                 </div>
                             </div>
                         <?php } }?>
                     </div>
-                </div>
+                </div><br><br><br>
             <script>
                 var close = document.getElementsByClassName("closebtn");
                 var i;

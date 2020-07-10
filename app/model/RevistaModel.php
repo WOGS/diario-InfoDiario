@@ -13,6 +13,10 @@ class RevistaModel
        $this->conexion->queryBuscarRevistas();
     }
 
+    public function executeBuscarPlanes(){
+       $this->conexion->executeBuscarPlanes();
+    }
+
     public function executeBuscarNoticias(){
         $this->conexion->queryBuscarNoticias();
 
@@ -68,6 +72,7 @@ class RevistaModel
         $this->conexion->executeBuscarNoticiaById($idNoticia);
     }
 
+
     public function executeModificarNoticia($idNoticia,$titulo,$subtitulo,$informe){
         $sql = "UPDATE Noticia SET Titulo='$titulo',Subtitulo ='$subtitulo',informe_noticia='$informe'  WHERE Cod_noticia = $idNoticia";
         $this->conexion->queryInsert($sql);
@@ -95,5 +100,9 @@ class RevistaModel
         $this->conexion->queryInsert($sql);
         $this->conexion->close();
         $_SESSION["productoActualizado"] = "ok";
+    }
+
+    public function executeBuscarNoticiaImagenById($idNoticia){
+        $this->conexion->executeBuscarNoticiaById($idNoticia);
     }
 }

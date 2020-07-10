@@ -223,6 +223,14 @@ switch ($page){
         $controller->executeModificarProducto($idProducto,$titulo,$descripcion);
         break;
 
+    case "buscarNoticiaImagenById":
+        $idNoticia = $_GET["idNoticia"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeBuscarNoticiaImagenById($idNoticia);
+        break;
+
+
     case "inicioAdm":
     default:
         include_once("controller/InicioController.php");

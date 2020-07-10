@@ -47,6 +47,18 @@ switch ($page){
         break;
 
     case "abrirSuscripcion":
+        $idProducto = $_GET["idProducto"];
+        $_SESSION["idProducto"] = $idProducto;
+        include_once("controller/UsuarioController.php");
+        $controller = new UsuarioController();
+        $controller->executeAbrirSuscripcion();
+        break;
+
+    case "pagarSuscripcion":
+        $idSuscrip = $_GET["idSuscrip"];
+        $_SESSION["idSuscrip"] = $idSuscrip;
+        $precio = $_GET["precio"];
+        $_SESSION["precio"] = $precio;
         include_once("controller/UsuarioController.php");
         $controller = new UsuarioController();
         $controller->executeAbrirSuscripcion();

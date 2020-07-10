@@ -10,11 +10,15 @@ class UsuarioController{
 
         public function execute(){
             $this->modelo->executeBuscarRevista();
-            //header("Location:view/usuario/panelControlUsuario.php");
             include_once("view/usuario/panelControlUsuario.php");
         }
 
         public function executeAbrirSuscripcion(){
+            $this->modelo->executeBuscarPlanes();
             include_once("view/usuario/suscribirseView.php");
+        }
+
+        public function executeAbrirPagarSuscripcion(){
+            include_once("view/usuario/pagarSuscripcion.php");
         }
 }

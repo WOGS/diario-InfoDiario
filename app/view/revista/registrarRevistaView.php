@@ -16,7 +16,7 @@ if(isset($_SESSION["usuarioOK"])) {
             <label>Nro. Producto</label>
             <input class="w3-input w3-round" type="text" name="nroRevista"><br/>
             <label>Descripcion</label>
-            <textarea class="w3-input w3-round" type="text" name="descripcion" rows="4" cols="50"></textarea>
+            <textarea class="w3-input w3-round" type="text" name="descripcion" maxlength="100" rows="4" cols="50"></textarea>
             <br/>
             <input type="hidden" name="idUsuario" value="<?php echo $pos[0]?>">
             <div class="w3-center">

@@ -160,6 +160,19 @@ insert into Cuota (Cod_cuota,Detalle,Id_usuario) value
 	(2,"Pago Mensual",2),
 	(3,"Pago Anual",3);
 
+CREATE TABLE Plan     
+(
+Cod_plan int NOT NULL,
+Periodo int NOT NULL,
+Detalle varchar(50),
+Precio int NOT NULL,
+CONSTRAINT PK_plan PRIMARY KEY (Cod_plan)
+);
+
+insert into Plan (Cod_plan,Periodo,Detalle,Precio) value 
+	(1,1,"Pago Mensual",100),
+	(2,3,"Pago Trimestral",250),
+	(3,12,"Pago Anual",1000);
 
 CREATE TABLE Lector_Suscripcion
 (
