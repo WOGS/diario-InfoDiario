@@ -29,7 +29,7 @@ class Database{
             $_SESSION["loginError"] = "error";
          }
         while($row = $result->fetch_assoc()) {
-            $resultado = $row['Id_usuario']."-".$row['Nombre']."-".$row['Cod_Usuario'];
+            $resultado = $row['Id_usuario']."-".$row['Nombre']."-".$row['Cod_Usuario']."-".$row['Nro_doc']."-".$row['Mail'];
         }
         // se guarda el usuario recuperado de la consulta en SESSION
         $_SESSION["usuarioOK"] = $resultado;

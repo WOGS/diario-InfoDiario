@@ -10,7 +10,6 @@ if(isset($_SESSION["usuarioOK"])) {
     <head>
         <title>InfoNete - Diario Online</title>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" type="img/png" href="view/img/favdiario.ico"/>
         <!-- css -->
         <link rel="stylesheet" href="view/css/bootstrap.min.css">
@@ -18,12 +17,41 @@ if(isset($_SESSION["usuarioOK"])) {
         <link rel="stylesheet" href="view/css/style.css">
         <link rel="stylesheet" href="view/css/w3.css">
         <!-- js -->
-        <!--  <script type="text/javascript" src="view/js/jquery-3.5.1.min.js"></script> -->
-        <!-- <script type="text/javascript" src="/js/bootstrap.min.js"></script> -->
-
         <script type="text/javascript" src="view/js/jquery-3.5.1.js"></script>
-        <!--<script type="text/javascript" src="view/js/js2/jquery.js"></script> -->
 
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+            <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/pricing/">
+
+            <!-- Bootstrap core CSS -->
+            <link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+            <!-- Favicons -->
+            <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+            <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+            <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+            <link rel="manifest" href="/docs/4.5/assets/img/favicons/manifest.json">
+            <link rel="mask-icon" href="/docs/4.5/assets/img/favicons/safari-pinned-tab.svg" color="#563d7c">
+            <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon.ico">
+            <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+            <meta name="theme-color" content="#563d7c">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+            <style>
+                .bd-placeholder-img {
+                    font-size: 1.125rem;
+                    text-anchor: middle;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                }
+
+                @media (min-width: 768px) {
+                    .bd-placeholder-img-lg {
+                        font-size: 3.5rem;
+                    }
+                }
+            </style>
 
 
     </head>
@@ -55,10 +83,13 @@ if(isset($_SESSION["usuarioOK"])) {
                     ?>
                     <li class="nav-item">                       
                         <a class="nav-link" href="index.php?page=panelUsuario">Suscripciones</a>
-                    </li>  <?php } ?>
+                    </li>  
+                    <?php 
+                    } 
+                    ?>
                     <li class="nav-item">
                         <a class="nav-link" href="view/logOut.php">Salir</a>
-                    </li>
+                    </li> 
                     <?php
                     }
                     ?>

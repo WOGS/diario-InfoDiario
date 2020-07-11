@@ -6,7 +6,7 @@ if(isset($_SESSION["usuarioOK"])) {
     <br>
     <br>
     <div class="w3-card-4 w3-display-middle " style="width:60%;">
-        <div class="w3-container w3-teal w3-round">
+        <div class="w3-container w3-blue-grey w3-round">
             <h2 class="w3-center">Crear Noticia</h2>
         </div>
         <br>

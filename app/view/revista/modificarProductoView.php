@@ -6,7 +6,7 @@ if(isset($_SESSION["productoModif"])) {
     <br>
     <br>
     <div class="w3-card-4 w3-display-middle " style="width:25%;">
-        <div class="w3-container w3-teal w3-round">
+        <div class="w3-container w3-blue-grey w3-round">
             <h2 class="w3-center">Modificar Producto</h2>
         </div>
         <br>

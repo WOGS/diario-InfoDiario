@@ -61,8 +61,10 @@ switch ($page){
         $_SESSION["precio"] = $precio;
         include_once("controller/UsuarioController.php");
         $controller = new UsuarioController();
-        $controller->executeAbrirSuscripcion();
+        $controller->executeAbrirPagarSuscripcion();
         break;
+    
+    //case "procesarPago":
 
     case "inicio":
     default:
