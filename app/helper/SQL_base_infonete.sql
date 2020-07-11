@@ -15,36 +15,7 @@ CONSTRAINT PK_Tipo_doc PRIMARY KEY (Cod_doc)
 insert into Tipo_doc (Cod_doc,Descripcion) value
 	(1,"DNI"),
 	(2,"DNI ext");
-
-CREATE TABLE Producto     
-(
-Cod_producto int NOT NULL,
-Descripcion varchar(50),
-CONSTRAINT PK_Producto PRIMARY KEY (Cod_producto)
-);
-
-insert into Producto (Cod_producto,Descripcion) value
-	(1,"Diario"),
-	(2,"Revista");
-
-
-CREATE TABLE Suscripcion      
-(
-Cod_suscripcion int NOT NULL,
-Descripcion varchar(50),
-Cod_producto int NOT NULL,
-CONSTRAINT PK_Suscripcion PRIMARY KEY (Cod_suscripcion),
-CONSTRAINT FK_Suscripcion_Producto FOREIGN KEY (Cod_producto) REFERENCES Producto (Cod_producto)
-);
-
- insert into Suscripcion (Cod_suscripcion,Descripcion,Cod_producto) value
- 	(0,"ilimitada",1),
- 	(1,"Semanal",1),
- 	(2,"Mensual",2),
- 	(3,"Anual",1),
-	(4,"restringido",1);
-
-
+    
 CREATE TABLE Provincia     
 (
 Cod_provincia int NOT NULL,
@@ -70,6 +41,33 @@ insert into Localidad (Cod_Localidad,Descripcion,Cod_Provincia) value
     (2,"Villa Luzuriaga",2),
     (3,"San justo",2),
     (4,"Caballito",1);
+
+
+CREATE TABLE Producto     
+(
+Cod_producto int NOT NULL,
+Descripcion varchar(50),
+CONSTRAINT PK_Producto PRIMARY KEY (Cod_producto)
+);
+
+insert into Producto (Cod_producto,Descripcion) value
+	(1,"Diario"),
+	(2,"Revista");
+
+
+CREATE TABLE Plan     
+(
+Cod_plan int NOT NULL,
+Periodo int NOT NULL,
+Detalle varchar(50),
+Precio int NOT NULL,
+CONSTRAINT PK_plan PRIMARY KEY (Cod_plan)
+);
+
+insert into Plan (Cod_plan,Periodo,Detalle,Precio) value 
+	(1,1,"Pago Mensual",100),
+	(2,3,"Pago Trimestral",250),
+	(3,12,"Pago Anual",1000);
 
 /* Rol como entidad aparte, relacionada con usuario*/
 CREATE TABLE Rol     
@@ -105,7 +103,7 @@ insert into Usuario (Nro_doc,Cod_doc,Nombre,Mail,Telefono,Cod_Localidad,Cod_Usua
 	(30555000,1,"Walter","walter@gmail.com",1133445566,3,1,"1234"),
 	(32000000,1,"Diego","diego@gmail.com",113333888,1,3,"1234"),
 	(35123456,1,"Pepe II","pepe2@gmail.com",1533445566,3,2,"1234");
-
+    
 
 CREATE TABLE Diario_Revista
 (
@@ -116,6 +114,37 @@ Numero int NOT NULL,
 Descripcion varchar(100),
 CONSTRAINT PK_Revista PRIMARY KEY (Id),
 CONSTRAINT FK_Revista_Usuario FOREIGN KEY (Id_Admin) REFERENCES Usuario(Id_usuario)
+);    
+
+CREATE TABLE Suscripcion      
+(
+Cod_suscripcion int NOT NULL auto_increment,
+Cod_Usuario int NOT NULL,
+Cod_producto int NOT NULL,
+Cod_plan int NOT NULL,
+Fecha_suscripcion date NOT NULL,
+CONSTRAINT PK_Suscripcion PRIMARY KEY (Cod_suscripcion),
+CONSTRAINT FK_Suscripcion_Plan FOREIGN KEY (Cod_plan) REFERENCES Plan (Cod_plan),
+CONSTRAINT FK_Suscripcion_Usuario FOREIGN KEY (Cod_usuario) REFERENCES Usuario (Id_Usuario),
+CONSTRAINT FK_Suscripcion_Producto FOREIGN KEY (Cod_producto) REFERENCES Diario_Revista (Id)
+);
+
+
+CREATE TABLE Pago
+(
+Id_pago int NOT NULL auto_increment,
+Nro_tarjeta BigInt NOT NULL,
+Fecha_vencTarjeta date NOT NULL,
+Cod_seguridad int NOT NULL,
+Id_usuario int NOT NULL,
+Cod_plan int NOT NULL,
+Cod_producto int NOT NULL,
+Fecha_pago date NOT NULL,
+Precio int Not NULL,
+CONSTRAINT PK_Pago PRIMARY KEY (Id_Pago),
+CONSTRAINT FK_Pago_Usuario FOREIGN KEY (Id_usuario) REFERENCES Usuario (Id_usuario),
+CONSTRAINT FK_Pago_Plan FOREIGN KEY (Cod_plan) REFERENCES Plan (Cod_plan),
+CONSTRAINT FK_Pago_Producto FOREIGN KEY (Cod_producto) REFERENCES Diario_Revista (Id)
 );
 
 
@@ -160,34 +189,6 @@ insert into Cuota (Cod_cuota,Detalle,Id_usuario) value
 	(2,"Pago Mensual",2),
 	(3,"Pago Anual",3);
 
-CREATE TABLE Plan     
-(
-Cod_plan int NOT NULL,
-Periodo int NOT NULL,
-Detalle varchar(50),
-Precio int NOT NULL,
-CONSTRAINT PK_plan PRIMARY KEY (Cod_plan)
-);
-
-insert into Plan (Cod_plan,Periodo,Detalle,Precio) value 
-	(1,1,"Pago Mensual",100),
-	(2,3,"Pago Trimestral",250),
-	(3,12,"Pago Anual",1000);
-
-CREATE TABLE Lector_Suscripcion
-(
-Id_usuario int NOT NULL,
-Cod_suscripcion int NOT NULL,
-CONSTRAINT PK_Lector_Suscripcion PRIMARY KEY (Id_usuario,Cod_suscripcion),
-CONSTRAINT FK_Cod_Usuario FOREIGN KEY (Id_usuario) REFERENCES Usuario (Id_usuario),
-CONSTRAINT FK_Cod_Suscripcion FOREIGN KEY (Cod_suscripcion) REFERENCES Suscripcion (Cod_suscripcion)
-);
-
-insert into Lector_Suscripcion (Id_usuario,Cod_suscripcion) value
-	(1,1),
-	(2,2),
-	(3,3);
-
 
 /* La GEOREFERENCIA puede ser bueno usarlo como: Grados decimales (DD): 41.40338, 2.17403  (LATITUD-LONGITUD)*/
 /* EJ: Buenos aires tiene Latitud: -34.60842 , Longitud: -58.37210 -  o la UNLaM -34.669254, -58.564420 */
@@ -224,4 +225,3 @@ CONSTRAINT FK_Noticia_Usuario FOREIGN KEY (Cod_contenidista) REFERENCES Usuario 
 CONSTRAINT FK_Noticia_Georeferencia FOREIGN KEY (Cod_georef) REFERENCES Georeferencia (Cod_georef),
 CONSTRAINT FK_Noticia_Revista FOREIGN KEY (Cod_revista) REFERENCES Diario_Revista (Id)
 );
-
