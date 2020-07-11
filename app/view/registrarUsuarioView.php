@@ -13,7 +13,7 @@
             </div>
             <div class="w3-container">
                 <label>Telefono </label><input class="w3-input w3-round" type="text" name="telefono"><br/>
-                <label>mail </label><input class="w3-input w3-round" type="email" name="mail"><br/>
+                <label>Mail </label><input class="w3-input w3-round" type="email" name="mail"><br/>
                 <?php
                     if($_SESSION["usuarioAlta"]!="Usuario"){ ?>
                         <div class="container">

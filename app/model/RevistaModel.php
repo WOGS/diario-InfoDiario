@@ -41,8 +41,8 @@ class RevistaModel
     public function executeGuardarNoticia($tituloNoticia,$subtitulo,$informe,$cod_contenidista,$codProducto,$revistaSel,$seccionSel){
 
         $sql = "INSERT INTO Noticia (Titulo,Subtitulo,informe_noticia,Cod_georef
-                 ,Cod_seccion,Cod_Contenidista,EstadoAutorizado,Origen)
-      value ('$tituloNoticia','$subtitulo','$informe',1,$seccionSel,$cod_contenidista,'NO','$codProducto')";
+                 ,Cod_seccion,Cod_Contenidista,EstadoAutorizado,Origen,Cod_revista)
+      value ('$tituloNoticia','$subtitulo','$informe',1,$seccionSel,$cod_contenidista,'NO','$codProducto',$revistaSel)";
         $this->conexion->queryInsert($sql);
         $this->conexion->close();
     }

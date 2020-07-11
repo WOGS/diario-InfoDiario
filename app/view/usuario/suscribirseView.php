@@ -1,4 +1,3 @@
-
 <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
     <h1 class="display-4">Planes</h1>
     <p class="lead"> Elegi el plan que se ajusta a tus necesidades, promociones imperdibles </p>
@@ -22,15 +21,20 @@
                         } 
                     ?></h3> 
                 </div>
-                <div class="card-body d-flex flex-column">
-                    <h1 class="card-title pricing-card-title"> <?php echo $posCampo[3]?> <small class="text-muted">/ Pesos</small> </h1>
-                    <ul class="list-unstyled mt-3 mb-4">
-                        <li> <?php echo $posCampo[2]?> </li>
-                    </ul>
-                    <a type="button" class="btn btn-lg btn-block btn-primary mt-auto" href="index.php?page=pagarSuscripcion&idSuscrip=<?php echo $posCampo[0]?>">Pagar</a>
+                <form class="w3-container" name="registrar" action="index.php?page=pagarSuscripcion" method="post" enctype="application/x-www-form-urlencoded">
+                    <div class="card-body d-flex flex-column">
+                        <h1 class="card-title pricing-card-title"> <?php echo $posCampo[3]?> <small class="text-muted">/ Pesos</small> </h1>
+                        <ul class="list-unstyled mt-3 mb-4">
+                            <li> <?php echo $posCampo[2]?> </li>
+                        </ul>
+                        <input type="hidden" name="id" value="<?php echo $posCampo[0]?>">
+                        <input type="hidden" name="precio" value="<?php echo $posCampo[3]?>">
+                        <input class='btn btn-lg btn-block btn-primary mt-auto' type="submit" value="PAGAR"/>
+                    </div>
+                </form>
                 </div>
-            </div>
-        <?php } }?>
-    </div>
+        <?php }
+            } ?>
+    </div> <a href="index.php?page=panelUsuario" class="w3-btn w3-red" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
 </div><br><br><br>
 

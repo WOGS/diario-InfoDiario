@@ -64,8 +64,11 @@ class Database{
     }
 
     public function queryBuscarNoticias(){
-        $stmt = $this->conexion->prepare("SELECT  ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia,ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,ntc.EstadoAutorizado,ntc.Origen,ntc.Cod_revista, secc.NombreSeccion
-	        FROM Noticia  ntc JOIN Seccion secc ON ntc.Cod_seccion = secc.Cod_seccion");
+        $stmt = $this->conexion->prepare("SELECT  ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia,
+        ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,ntc.EstadoAutorizado,
+        ntc.Origen,ntc.Cod_revista, secc.NombreSeccion,dr.Titulo as TituloRevista
+        FROM Noticia  ntc JOIN Seccion secc ON ntc.Cod_seccion = secc.Cod_seccion
+                          JOIN Diario_Revista dr ON dr.Id = ntc.Cod_revista");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -80,8 +83,9 @@ class Database{
                 $estadoAutorizado = $row['EstadoAutorizado'];
                 $origen = $row['Origen'];
                 $seccion = $row['NombreSeccion'];
+                $subProducto = $row['TituloRevista'];
 
-                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen."-".$seccion;
+                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen."-".$seccion."-".$subProducto;
                 $i++;
             }
             // se guarda las revistas recuperados de la consulta en SESSION
@@ -180,8 +184,7 @@ class Database{
     }
 
     public function executeBuscarSecciones(){
-        $stmt = $this->conexion->prepare("SELECT sec.Cod_seccion,sec.NombreSeccion,sec.Descripcion,sec.EstadoAutorizado, prd.Descripcion as DescProd 
-                                                    FROM Seccion sec JOIN Producto prd ON sec.Cod_producto = prd.Cod_producto;");
+        $stmt = $this->conexion->prepare("SELECT sec.Cod_seccion,sec.NombreSeccion,sec.Descripcion,sec.EstadoAutorizado, prd.Descripcion as DescProd   FROM Seccion sec JOIN Producto prd ON sec.Cod_producto = prd.Cod_producto;");
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -204,6 +207,7 @@ class Database{
         $stmt->close();
         $this->conexion->close();
     }
+
 
     public function queryCambiarEstadoSeccion($idSeccion,$idEstado){
         $estado = "";
@@ -331,6 +335,65 @@ class Database{
         $this->conexion->close();
     }
 
+    public function queryBuscarMisSuscripciones($idUsuario){
+        $stmt = $this->conexion->prepare("SELECT * FROM Suscripcion sus JOIN Diario_Revista dr ON sus.Cod_producto = dr.Id 
+                              JOIN Plan pl ON  sus.Cod_plan = pl.Cod_plan where Cod_usuario = ?;");
+        $stmt->bind_param('i', $idUsuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinSuscripciones"] = "0";
+        }else{
+            $i=1;
+            while($row = $result->fetch_assoc()) {
+                $codSuscripcion= $row['Cod_suscripcion'];
+                $titulo= $row['Titulo'];
+                $descripcion = $row['Descripcion'];
+                $detalle=$row['Detalle'];
+                $fechaSuscripcion = $row['Fecha_suscripcion'];
+
+                $resultados[$i]= $codSuscripcion."_".$titulo."_".$descripcion."_".$detalle."_".$fechaSuscripcion;
+                $i++;
+            }
+            // se guarda las revistas recuperados de la consulta en SESSION
+            $_SESSION["misSuscripciones"] = $resultados;
+        }
+        $stmt->close();
+        $this->conexion->close();
+    }
+
+    public function executeMisFacturas($idUsuario){
+        $stmt = $this->conexion->prepare("SELECT * FROM Pago pg JOIN Plan pl ON  pg.Cod_plan = pl.Cod_plan
+                      JOIN  Diario_Revista dr ON pg.Cod_producto = dr.Id
+                    where Id_usuario = ?;");
+        $stmt->bind_param('i', $idUsuario);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinFacturas"] = "0";
+        }else{
+            $i=1;
+            while($row = $result->fetch_assoc()) {
+                $nroFactura = $row['Id_pago'];
+                $nroTarjeta= $row['Nro_tarjeta'];
+                $fechaPago= $row['Fecha_pago'];
+                $precio = $row['Precio'];
+                $detalle=$row['Detalle'];
+                $titulo = $row['Titulo'];
+
+
+                $resultados[$i]= $nroFactura."_".$nroTarjeta."_".$fechaPago."_".$precio."_".$detalle."_".$titulo;
+                $i++;
+            }
+            // se guarda las revistas recuperados de la consulta en SESSION
+            $_SESSION["misFacturas"] = $resultados;
+        }
+        $stmt->close();
+        $this->conexion->close();
+    }
+
     public function queryInsert($sql){
         mysqli_query($this->conexion, $sql);
     }
@@ -339,3 +402,4 @@ class Database{
         mysqli_close($this->conexion);
     }
 }
+

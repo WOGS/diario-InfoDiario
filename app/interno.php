@@ -230,7 +230,6 @@ switch ($page){
         $controller->executeBuscarNoticiaImagenById($idNoticia);
         break;
 
-
     case "inicioAdm":
     default:
         include_once("controller/InicioController.php");
@@ -238,6 +237,5 @@ switch ($page){
         $controller->executeAdm();
         break;
 }
-
-//include_once("view/partial/footerInterno.php");
+include_once("view/partial/footer.php");
 ?>

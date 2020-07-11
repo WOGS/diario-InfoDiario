@@ -34,10 +34,12 @@ switch ($page){
         break;
 
     case "panelUsuario":
-       include_once("controller/UsuarioController.php");
-       $controller = new UsuarioController();
-       $controller->execute();       
-       break;
+        $idUsuario = $_SESSION["idUserLogin"];
+        include_once("controller/UsuarioController.php");
+        $controller = new UsuarioController();
+        $controller->execute();
+        $controller->executeMisSuscripciones($idUsuario);       
+        break;
 
     case "buscarUsuarioById":
         $idUsuario = $_GET["idUsiario"];
@@ -55,16 +57,34 @@ switch ($page){
         break;
 
     case "pagarSuscripcion":
-        $idSuscrip = $_GET["idSuscrip"];
+        $idSuscrip = $_POST["id"];
         $_SESSION["idSuscrip"] = $idSuscrip;
-        $precio = $_GET["precio"];
+        $precio = $_POST["precio"];
         $_SESSION["precio"] = $precio;
         include_once("controller/UsuarioController.php");
         $controller = new UsuarioController();
         $controller->executeAbrirPagarSuscripcion();
         break;
     
-    //case "procesarPago":
+    case "procesarPago":
+        $tarjeta  = $_POST["nroTarjeta"];
+        $fechaVenc = $_POST["fechaVencim"];
+        $codSeguridad = $_POST["codSeguridad"];
+        $idUsuario = $_POST["idUsuario"];
+        $idProducto = $_SESSION["idProducto"];
+        $precio = $_SESSION["precio"];
+        $idPlan = $_SESSION["idSuscrip"];
+        include_once("controller/UsuarioController.php");
+        $controller = new UsuarioController();
+        $controller->executeProcesarPago($tarjeta,$fechaVenc,$codSeguridad,$idUsuario,$idProducto,$precio,$idPlan);
+        break;
+
+    case "buscarFacturas":
+        $idUsuario = $_SESSION["idUserLogin"];
+        include_once("controller/UsuarioController.php");
+        $controller = new UsuarioController();
+        $controller->executeMisFacturas($idUsuario);       
+        break;
 
     case "inicio":
     default:

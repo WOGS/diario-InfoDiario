@@ -1,13 +1,5 @@
-<?php
-if(isset($_SESSION["usuarioOK"])) {
-    $usuario = $_SESSION["usuarioOK"];
-    ?>
-    <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="view/css/estilos.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <body>
-    <div class="w3-container w3-center">
+
+<div class="w3-container w3-center">
         <h1 class="w3-center">Panel de control Administrador</h1>
         <br>
         <h2 class="w3-center">Acciones posibles</h2>
@@ -18,25 +10,22 @@ if(isset($_SESSION["usuarioOK"])) {
                 <a href="interno.php?page=listarUsuario" class="w3-btn w3-red" style="text-decoration: none">Listar Usuarios</a>
         </div>
         <br>
-        <?php
-        if(isset($_SESSION["usuarios"])) {
-        echo "<div class='w3-container'>";
-        echo    "<div class='w3-container w3-light-grey w3-left-align w3-margin-top w3-margin-bottom'>";
-        echo        "<h2 style='text-shadow:1px 1px 0 #444'>Lista de Usuarios</h2>";
-        echo    "</div>";
-        echo    "<table class='w3-table w3-bordered w3-centered w3-table-all'>";
-        echo        "<tr>";
-        echo            "<th>Nombre</th>";
-        echo            "<th>Mail</th>";
-        echo            "<th>Documento</th>";
-        echo            "<th>Telefono</th>";
-        echo            "<th>Rol</th>";
-        echo            "<th>Modificar datos Usuario</th>";
-        echo            "<th>Borrar</th>";
-        echo        "</tr>";
-        }?>
-                <?php
-                if(isset($_SESSION["usuarios"])) {
+        <div class='w3-container'>
+            <?php if(isset($_SESSION["usuarios"])) { ?>
+                <div class='w3-container w3-light-grey w3-left-align w3-margin-top w3-margin-bottom'>
+                    <h2 style='text-shadow:1px 1px 0 #444'>Lista de Usuarios</h2>
+                </div>
+            <table class='w3-table w3-bordered w3-centered w3-table-all'>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Mail</th>
+                    <th>Documento</th>
+                   <th>Telefono</th>
+                    <th>Rol</th>
+                    <th>Modificar datos Usuario</th>
+                    <th>Borrar</th>
+                </tr>
+                 <?php
                     $usuarios = $_SESSION["usuarios"];
                     $tam = sizeof($usuarios);
                     for ($i = 1; $i <= $tam; $i++) {
@@ -54,7 +43,7 @@ if(isset($_SESSION["usuarioOK"])) {
                                 echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
                             echo "</td>";
                         echo"</tr>";
-                    }
+                        }
                 }
                 if(isset($_SESSION["sinDatosUsuarios"])) {
                     echo"<div class='alert warning'>
@@ -69,7 +58,7 @@ if(isset($_SESSION["usuarioOK"])) {
         <br>
         <br>
     </div>
-    <script>
+    <!--script>
         var close = document.getElementsByClassName("closebtn");
         var i;
         for (i = 0; i < close.length; i++) {
@@ -79,12 +68,5 @@ if(isset($_SESSION["usuarioOK"])) {
                 setTimeout(function(){ div.style.display = "none"; }, 600);
             }
         }
-    </script>
-    </body>
-    </html>
-    <?php
-}else{
-    header("Location: index.php");
-    exit();
-}
-?>
+    </script-->
+
