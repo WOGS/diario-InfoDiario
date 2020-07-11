@@ -2,6 +2,7 @@
 if(isset($_SESSION["usuarioOK"])) {
     $usuario = $_SESSION["usuarioOK"];
     $pos = explode("-", $usuario);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -69,19 +70,11 @@ if(isset($_SESSION["usuarioOK"])) {
                     <ul class="list-unstyled mt-3 mb-4">
                         <li> <?php echo $posCampo[2]?> </li>
                     </ul>
-                    <?php 
-
-                    echo "<a type='button' class='btn btn-lg btn-block btn-primary mt-auto' 
-
-                        href='index.php?page=pagarSuscripcion&idSuscrip=1&precio=1oo'>Pagar</a> " 
-
-                    ?>
-
-
-
+                    <?php echo "<a type='button' class='btn btn-lg btn-block btn-primary mt-auto' href='index.php?page=pagarSuscripcion&idSuscrip=1&precio=1oo'>Pagar</a> " ?>
                 </div>
             </div>
-        <?php } }?>
+        <?php }
+            } ?>
     </div>
 </div><br><br><br>
 </body>

@@ -17,15 +17,16 @@ if(isset($_SESSION["usuarioOK"])) {
         <link rel="stylesheet" href="view/css/estilos.css">
         <link rel="stylesheet" href="view/css/style.css">
         <link rel="stylesheet" href="view/css/w3.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
         <!-- js -->
         <!--  <script type="text/javascript" src="view/js/jquery-3.5.1.min.js"></script> -->
         <!-- <script type="text/javascript" src="/js/bootstrap.min.js"></script> -->
 
         <script type="text/javascript" src="view/js/jquery-3.5.1.js"></script>
         <!--<script type="text/javascript" src="view/js/js2/jquery.js"></script> -->
+        <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
 
-
-
+        <!--meta name="viewport" content="width=device-width, initial-scale=1"-->
     </head>
     <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">

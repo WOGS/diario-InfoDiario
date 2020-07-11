@@ -1,18 +1,11 @@
-<?php
-if(isset($_SESSION["usuarioOK"])) {
-    $usuario = $_SESSION["usuarioOK"];
-    $pos = explode("-", $usuario);
-    ?>
-    <html>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <body>
     <div class="w3-container w3-center">
         <h1 class="w3-center">Panel de control Productos</h1>
         <h2 class="w3-margin-left w3-margin-bottom" style="margin-top: 2%">Acciones posibles</h2>
         <div class="w3-center">
             <div class="w3-bar">
             <?php
+                $usuario = $_SESSION["usuarioOK"];
+                $pos = explode("-", $usuario);
             if($pos[2] == 1){?>
                 <a href="interno.php?page=crearRevista" class="w3-btn w3-red" style="text-decoration: none">Crear nuevo Producto</a>
             <?php }
@@ -35,7 +28,6 @@ if(isset($_SESSION["usuarioOK"])) {
                     <th>DESCRIPCION</th>
                     <th>NUMERO</th>
                     <th>MODIFICAR PRODUCTO</th>
-                    <!--th>MODIFICAR ESTADO</th-->
                     <th>BORRAR</th>
                 </tr>
                 <?php
@@ -52,9 +44,6 @@ if(isset($_SESSION["usuarioOK"])) {
                         echo "<td>";
                             echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='interno.php?page=buscarProductoById&idProducto=$posCampo[0]'/>";
                         echo "</td>";
-                        /*echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='#'/>";
-                        echo "</td>";*/
                         echo "<td>";
                             echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center'href='#'/>";
                         echo "</td>";
@@ -62,10 +51,7 @@ if(isset($_SESSION["usuarioOK"])) {
                             echo "<td>";
                                 echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
                             echo "</td>";
-                            /*echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
-                            echo "</td>";*/
-                            echo "<td>";
+                               echo "<td>";
                                 echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash  w3-center w3-disabled'href='#'/>";
                             echo "</td>";
                         }
@@ -145,9 +131,7 @@ if(isset($_SESSION["usuarioOK"])) {
                           <span class='closebtn'>&times;</span>  
                           <strong>Success!</strong>Seccion Eliminada correctamente</div>";
                     unset($_SESSION["seccionEliminada"]);
-                }
-
-                ?>
+                } ?>
             </table>
         </div>
                 <br>
@@ -228,7 +212,7 @@ if(isset($_SESSION["usuarioOK"])) {
         </div>
     </div>
   
-    <script>
+    <!--script>
         var close = document.getElementsByClassName("closebtn");
         var i;
         for (i = 0; i < close.length; i++) {
@@ -240,10 +224,4 @@ if(isset($_SESSION["usuarioOK"])) {
         }
     </script>
     </body>
-    </html>
-    <?php
-}else{
-    header("Location: interno.php");
-    exit();
-}
-?>
+    </html-->
