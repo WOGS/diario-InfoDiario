@@ -230,6 +230,14 @@ switch ($page){
         $controller->executeBuscarNoticiaImagenById($idNoticia);
         break;
 
+    case "cambiarEstadoLibre":
+        $idNoticia = $_GET["idNoticia"];
+        $idEstado = $_GET["idEstado"];
+        include_once("controller/RevistaController.php");
+        $controller = new RevistaController();
+        $controller->executeCambiarEstadoLibre($idNoticia,$idEstado);
+        break;
+
     case "inicioAdm":
     default:
         include_once("controller/InicioController.php");

@@ -394,6 +394,21 @@ class Database{
         $this->conexion->close();
     }
 
+    public function queryCambiarEstadoLibre($idNoticia,$idEstado){
+        $estado = "";
+        if (strcmp ($idEstado , "SI" ) == 0){
+            $estado = "NO";
+        } else {
+            $estado = "SI";
+        }
+        $stmt = $this->conexion->prepare("UPDATE Noticia SET AccesoGratuito=?  WHERE Cod_noticia=?");
+        $stmt->bind_param('si', $estado,$idNoticia);
+        
+        $stmt->execute();
+        $stmt->close();
+        $this->queryBuscarNoticias();
+    }
+
     public function queryInsert($sql){
         mysqli_query($this->conexion, $sql);
     }
