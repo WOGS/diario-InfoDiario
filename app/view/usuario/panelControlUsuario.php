@@ -43,26 +43,31 @@
         </div>
         <div class="container">
             <div class="card-deck mb-3 text-center">
-                <?php
-                if(isset($_SESSION["misSuscripciones"])) {
-                $suscripciones = $_SESSION["misSuscripciones"];
-                $tam = sizeof($suscripciones);
-                for ($i = 1; $i <= $tam; $i++) {
+                <div class="w3-row">
+                    <?php
+                    if(isset($_SESSION["misSuscripciones"])) {
+                    $suscripciones = $_SESSION["misSuscripciones"];
+                    $tam = sizeof($suscripciones);
+                    for ($i = 1; $i <= $tam; $i++) {
                     $posCampo = explode("_", $suscripciones[$i])?>
+                    <div class="w3-third w3-container">
                     <div class="card mb-4 shadow-sm">
                         <div class="card-header">
                           <h3 class="my-0 font-weight-normal"><?php echo $posCampo[1]?></h3>
                         </div>
                         <div class="card-body d-flex flex-column">
-                             <ul class="list-unstyled mt-3 mb-4">
+                            <ul class="list-unstyled mt-3 mb-4">
                                 <li> <?php echo $posCampo[2]?> </li>
                                 <li> <?php echo $posCampo[3]?> </li>
                                 <li> Fecha Suscripcion <?php echo $posCampo[4]?> </li>
+                                <li> <?php echo $posCampo[0]?> </li>
                             </ul>
-                            <a type="button" class="btn btn-lg btn-block btn-primary mt-auto" href="index.php?page=abrirSuscripcion&idProducto=<?php echo $posCampo[0]?>">Suscribirse</a>
+                            <a type="button" class="btn btn-lg btn-block btn-primary mt-auto" href="index.php?page=buscarNoticiasPorProducto&idProducto=<?php echo $posCampo[0]?>">Leer</a>
                         </div>
                     </div>
+                    </div>
                     <?php } }?>
+                  </div>  
                 </div>
             </div>
         <?php

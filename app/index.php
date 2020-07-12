@@ -86,11 +86,27 @@ switch ($page){
         $controller->executeMisFacturas($idUsuario);       
         break;
 
-    case "inicio":
-    default:
+    case "abrirNoticia":
+        $idNoticia = $_GET["idNoticia"];
+        $_SESSION["idNoticia"] = $idNoticia;
         include_once("controller/InicioController.php");
         $controller = new InicioController();
-        $controller->execute();
+        $controller->executeAbrirNoticia($idNoticia);
+        break;
+
+    case "buscarNoticiasPorProducto":
+        $idProducto = $_GET["idProducto"];
+        include_once("controller/InicioController.php");
+        $controller = new InicioController();
+        $controller->executeBuscarNoticiasInicio($idProducto);
+        break;          
+
+    case "inicio":
+        default:
+        $idProducto = 1 ;
+        include_once("controller/InicioController.php");
+        $controller = new InicioController();
+        $controller->execute($idProducto);
         break;
 }
 include_once("view/partial/footer.php");

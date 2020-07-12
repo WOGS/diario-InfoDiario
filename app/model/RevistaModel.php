@@ -105,4 +105,5 @@ class RevistaModel
     public function executeBuscarNoticiaImagenById($idNoticia){
         $this->conexion->executeBuscarNoticiaById($idNoticia);
     }
+    
 }

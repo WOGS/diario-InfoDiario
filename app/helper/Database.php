@@ -64,13 +64,11 @@ class Database{
     }
 
     public function queryBuscarNoticias(){
-        $stmt = $this->conexion->prepare("SELECT  ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia,
-        ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,ntc.EstadoAutorizado,
-        ntc.Origen,ntc.Cod_revista, secc.NombreSeccion,dr.Titulo as TituloRevista
+        $stmt = $this->conexion->prepare("SELECT  ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia, ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,ntc.EstadoAutorizado, ntc.Origen,ntc.Cod_revista, secc.NombreSeccion, ntc.AccesoGratuito, dr.Titulo as TituloRevista
         FROM Noticia  ntc JOIN Seccion secc ON ntc.Cod_seccion = secc.Cod_seccion
                           JOIN Diario_Revista dr ON dr.Id = ntc.Cod_revista");
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->get_result(); 
 
         if($result->num_rows === 0) {
             $_SESSION["sinDatosNoticias"] = "0";
@@ -84,8 +82,9 @@ class Database{
                 $origen = $row['Origen'];
                 $seccion = $row['NombreSeccion'];
                 $subProducto = $row['TituloRevista'];
+                $acceso = $row['AccesoGratuito'];
 
-                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen."-".$seccion."-".$subProducto;
+                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen."-".$seccion."-".$subProducto."-".$acceso;
                 $i++;
             }
             // se guarda las revistas recuperados de la consulta en SESSION
@@ -245,7 +244,7 @@ class Database{
     }
 
     public function executeBuscarNoticiaById($idNoticia){
-        $stmt = $this->conexion->prepare("SELECT * FROM Noticia WHERE Cod_noticia = ?");
+        $stmt = $this->conexion->prepare("SELECT * FROM Noticia ntc join usuario usu on ntc.Cod_contenidista=usu.Cod_Usuario join Seccion secc on secc.Cod_seccion=ntc.Cod_seccion WHERE Cod_noticia = ?");
         $stmt->bind_param('i', $idNoticia);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -258,7 +257,9 @@ class Database{
                 $titulo=$row['Titulo'];
                 $subtitulo=$row['Subtitulo'];
                 $contenido = $row['informe_noticia'];
-                $resultado = $idNoticia."-".$titulo."-".$subtitulo."-".$contenido;
+                $seccion = $row['NombreSeccion'];
+                $contenidista = $row['Nombre'];
+                $resultado = $idNoticia."-".$titulo."-".$subtitulo."-".$contenido."-".$seccion."-".$contenidista;
             }
             // se guarda la noticia a modificar en SESSION
             $_SESSION["noticiaModif"] = $resultado;
@@ -336,8 +337,7 @@ class Database{
     }
 
     public function queryBuscarMisSuscripciones($idUsuario){
-        $stmt = $this->conexion->prepare("SELECT * FROM Suscripcion sus JOIN Diario_Revista dr ON sus.Cod_producto = dr.Id 
-                              JOIN Plan pl ON  sus.Cod_plan = pl.Cod_plan where Cod_usuario = ?;");
+        $stmt = $this->conexion->prepare("SELECT * FROM Suscripcion sus JOIN Diario_Revista dr ON sus.Cod_producto = dr.Id  JOIN Plan pl ON  sus.Cod_plan = pl.Cod_plan where Cod_usuario = ?;");
         $stmt->bind_param('i', $idUsuario);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -389,6 +389,42 @@ class Database{
             }
             // se guarda las revistas recuperados de la consulta en SESSION
             $_SESSION["misFacturas"] = $resultados;
+        }
+        $stmt->close();
+        $this->conexion->close();
+    }
+
+      public function queryBuscarNoticiasInicio($idProducto){
+        $stmt = $this->conexion->prepare("SELECT ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia, ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,ntc.EstadoAutorizado,
+        ntc.Origen,ntc.Cod_revista, secc.NombreSeccion, usu.Nombre, ntc.AccesoGratuito, secc.EstadoAutorizado as EstadoSeccion, ntc.informe_noticia, dr.Titulo as TituloRevista
+        FROM Usuario usu JOIN Noticia ntc ON Id_usuario=Cod_contenidista  JOIN Seccion secc ON ntc.Cod_seccion = secc.Cod_seccion JOIN Diario_Revista dr ON dr.Id = ntc.Cod_revista WHERE ntc.Cod_revista = ? AND ntc.EstadoAutorizado ='SI'");
+        $stmt->bind_param('i', $idProducto);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows === 0) {
+            $_SESSION["sinDatosNoticias"] = "0";
+        }else{
+            $i=1;
+            while($row = $result->fetch_assoc()) {
+                $codNoticia= $row['Cod_noticia'];
+                $titulo=$row['Titulo'];
+                $subTitulo = $row['Subtitulo'];
+                $estadoAutorizado = $row['EstadoAutorizado'];
+                $origen = $row['Origen'];
+                $seccion = $row['NombreSeccion'];
+                $subProducto = $row['TituloRevista'];
+                $contenidista = $row ['Nombre'];
+                $acceso = $row ['AccesoGratuito'];
+                $estadoSeccion = $row ['EstadoSeccion'];
+                $informe = $row ['informe_noticia'];
+
+                $resultados[$i]= $codNoticia."-".$titulo."-".$subTitulo."-".$estadoAutorizado."-".$origen."-".$seccion."-".$subProducto."-".$contenidista."-".$acceso."-".$estadoSeccion."-".$informe;
+                $i++;
+            }
+            // se guarda las revistas recuperados de la consulta en SESSION
+            $_SESSION["noticias"] = $resultados;
+            $_SESSION["titulo"] = $subProducto;
         }
         $stmt->close();
         $this->conexion->close();
