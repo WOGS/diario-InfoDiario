@@ -394,6 +394,7 @@ class Database{
         $this->conexion->close();
     }
 
+
       public function queryBuscarNoticiasInicio($idProducto){
         $stmt = $this->conexion->prepare("SELECT ntc.Cod_noticia, ntc.Titulo,ntc.Subtitulo ,ntc.informe_noticia,ntc.link_noticia, ntc.Cod_georef,ntc.imagen_noticia,ntc.Cod_seccion,ntc.Cod_contenidista,ntc.EstadoAutorizado,
         ntc.Origen,ntc.Cod_revista, secc.NombreSeccion, usu.Nombre, ntc.AccesoGratuito, secc.EstadoAutorizado as EstadoSeccion, ntc.informe_noticia, dr.Titulo as TituloRevista
@@ -428,6 +429,23 @@ class Database{
         }
         $stmt->close();
         $this->conexion->close();
+    }
+
+
+    public function queryCambiarEstadoLibre($idNoticia,$idEstado){
+        $estado = "";
+        if (strcmp ($idEstado , "SI" ) == 0){
+            $estado = "NO";
+        } else {
+            $estado = "SI";
+        }
+        $stmt = $this->conexion->prepare("UPDATE Noticia SET AccesoGratuito=?  WHERE Cod_noticia=?");
+        $stmt->bind_param('si', $estado,$idNoticia);
+        
+        $stmt->execute();
+        $stmt->close();
+        $this->queryBuscarNoticias();
+
     }
 
     public function queryInsert($sql){

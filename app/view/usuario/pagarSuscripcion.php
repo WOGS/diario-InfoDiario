@@ -34,7 +34,7 @@
                     <h1 class="card-title pricing-card-title"> $ <?php echo $_SESSION["precio"]?> <small class="text-muted">/ Pesos</small> </h1>
                     <input type="hidden" name="idUsuario" value="<?php echo $pos[0]?>">
                     <input class="w3-button w3-blue-grey w3-round w3-center w3-hover-teal" type="submit" name="boton" value="PAGAR"/>
-                    <a href="index.php?page=abrirSuscripcion&idProducto=<?php echo $_SESSION["idProducto"]?>" class="w3-btn w3-red" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
+                    <a href="index.php?page=abrirSuscripcion&idProducto=<?php echo $_SESSION["idProducto"]?>" class="w3-btn w3-round w3-red" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
                     </form>
                 </div>
             </div>

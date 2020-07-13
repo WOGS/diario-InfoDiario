@@ -105,5 +105,8 @@ class RevistaModel
     public function executeBuscarNoticiaImagenById($idNoticia){
         $this->conexion->executeBuscarNoticiaById($idNoticia);
     }
-    
+
+    public function executeCambiarEstadoLibre($idNoticia,$idEstado){
+        $this->conexion->queryCambiarEstadoLibre($idNoticia,$idEstado);
+    }
 }

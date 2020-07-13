@@ -7,8 +7,8 @@
             ?>
     <div class="w3-center">
         <div class="w3-bar">
-        <a href="index.php?page=buscarFacturas" class="w3-btn w3-red" style="text-decoration: none">Mis Facturas</a>
-        <a href="index.php?page=buscarUsuarioById&idUsiario=<?php echo $pos[0]?>" class="w3-btn w3-red" style="text-decoration: none">Editar Mis Datos</a>
+        <a href="index.php?page=buscarFacturas" class="w3-btn btn-primary" style="text-decoration: none">Mis Facturas</a>
+        <a href="index.php?page=buscarUsuarioById&idUsiario=<?php echo $pos[0]?>" class="w3-btn btn-primary" style="text-decoration: none">Editar Mis Datos</a>
         </div>
     </div>
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">

@@ -5,9 +5,9 @@
         <h2 class="w3-center">Acciones posibles</h2>
         <div class="w3-center">
             <div class="w3-bar">
-                <a href="interno.php?page=registrar" class="w3-btn w3-red" style="text-decoration: none">Alta Usuario</a>
-                <a href="interno.php?page=admRevista" class="w3-btn w3-red" style="text-decoration: none">Administrar Contenido</a>
-                <a href="interno.php?page=listarUsuario" class="w3-btn w3-red" style="text-decoration: none">Listar Usuarios</a>
+                <a href="interno.php?page=registrar" class="w3-btn btn-primary" style="text-decoration: none">Alta Usuario</a>
+                <a href="interno.php?page=admRevista" class="w3-btn btn-primary" style="text-decoration: none">Administrar Contenido</a>
+                <a href="interno.php?page=listarUsuario" class="w3-btn btn-primary" style="text-decoration: none">Listar Usuarios</a>
         </div>
         <br>
         <div class='w3-container'>
@@ -37,10 +37,10 @@
                             echo "<td>$posUsuario[4]</td>";
                             echo "<td>$posUsuario[5]</td>";
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon glyphicon-user w3-center' href='interno.php?page=buscarUsuarioById&idUsiario=$posUsuario[0]'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon glyphicon-user w3-center' href='interno.php?page=buscarUsuarioById&idUsiario=$posUsuario[0]'/>";
                             echo "</td>";
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-trash'href='interno.php?page=eliminarUsuario&idUsiario=$posUsuario[0]'/>";
                             echo "</td>";
                         echo"</tr>";
                         }

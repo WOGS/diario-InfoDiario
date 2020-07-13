@@ -15,9 +15,7 @@
     <hr>
     <div class="col-md-9">
     	<p class="mt-4"><?php echo $posNoticia[4]; ?></p>
-        <h1><?php echo $posNoticia[1]; ?>
-          <a href="https://goo.gl/maps/HSkjRQGLzNJbGcJX6" target="_blank" class="text-primary"><svg class="bi bi-geo-alt" width="0.9em" height="0.9em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 16s6-5.686 6-10A6 6 0 002 6c0 4.314 6 10 6 10zm0-7a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"/></svg></a>  
+        <h1><?php echo $posNoticia[1]; ?>           
         </h1>
         <p class="lead">Por <?php echo $posNoticia[5]; ?></p>          
         

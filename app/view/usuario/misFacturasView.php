@@ -4,10 +4,8 @@
         <br>
         <h2 class="w3-center">Acciones posibles</h2>
         <div class="w3-center">
-            <div class="w3-bar">
-                <!--<a href="interno.php?page=registrar" class="w3-btn w3-red" style="text-decoration: none">Alta Usuario</a>
-                <a href="interno.php?page=admRevista" class="w3-btn w3-red" style="text-decoration: none">Administrar Contenido</a> -->
-                <a href="index.php?page=panelUsuario" class="w3-btn w3-red" style="text-decoration: none">Volver</a>
+            <div class="w3-bar">               
+                <a href="index.php?page=panelUsuario" class="w3-btn btn-primary" style="text-decoration: none">Volver</a>
         </div>
         <br>
         <div class='w3-container'>
@@ -37,7 +35,7 @@
                             echo "<td>$posUsuario[1]</td>";
                             echo "<td>$posUsuario[4]</td>";
                             echo "<td>$posUsuario[5]</td>";
-                            echo "<td> <a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-print  w3-center 'href='#'/> </td>";
+                            echo "<td> <a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-print  w3-center 'href='#'/> </td>";
                         echo"</tr>";
                         } 
                 }

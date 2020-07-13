@@ -4,7 +4,7 @@
 ?>
 
 <div class="w3-card-4 w3-display-middle " style="width:25%;">
-    <div class="w3-container w3-teal w3-round">
+    <div class="w3-container w3-blue-grey w3-round">
         <h2 class="w3-center">Modificar Usuario</h2>
     </div>
     <br>
@@ -54,7 +54,7 @@
         <div class="container">
             <input class="w3-button w3-blue-grey w3-round w3-center" type="submit" name="boton" value="ENVIAR">
             <?php
-            if(strcmp($_SESSION["usuarioAlta"],"Admin")== 0){ ?>
+            if(strcmp($_SESSION["usuarioAlta"],"Admin")==0){ ?>
             <a href="interno.php?page=panelControl" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar">CANCELAR</a>
             <?php } else{ ?>
             <a href="index.php?page=panelUsuario" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar">CANCELAR</a>

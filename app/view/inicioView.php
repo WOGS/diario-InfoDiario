@@ -44,8 +44,13 @@
                         <rect width='11' height='9' x='2.5' y='7' rx='2'/><path fill-rule='evenodd' d='M4.5 4a3.5 3.5 0 117 0v3h-1V4a2.5 2.5 0 00-5 0v3h-1V4z' clip-rule='evenodd'/></svg></span>"; }
                         echo "</h2>";
                         echo "<p>$posCampo[2]</p>";
+                        if(strcmp($posCampo[8],"SI")==0){
                         echo "<a href='index.php?page=abrirNoticia&idNoticia=".$posCampo[0]."
                         ' class='btn btn-primary'>Seguir Leyendo &rarr;</a>";
+                        }
+                        else {  
+                         echo "<a href='#' class='btn btn-primary w3-disabled'>Seguir Leyendo &rarr;</a>";
+                           }                   
                         echo "</div>";
                         echo "<div class='card-footer text-muted'>
                         Publicado por <a href='#''>$posCampo[7]</a> en <a href='#''>$posCampo[6]</a>

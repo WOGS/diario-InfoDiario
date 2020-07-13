@@ -7,12 +7,12 @@
                 $usuario = $_SESSION["usuarioOK"];
                 $pos = explode("-", $usuario);
             if($pos[2] == 1){?>
-                <a href="interno.php?page=crearRevista" class="w3-btn w3-red" style="text-decoration: none">Crear nuevo Producto</a>
+                <a href="interno.php?page=crearRevista" class="w3-btn btn-primary" style="text-decoration: none">Crear nuevo Producto</a>
             <?php }
             ?>
-                <a href="interno.php?page=crearSeccion" class="w3-btn w3-red" style="text-decoration: none">Crear Seccion</a>
-                <a href="interno.php?page=crearNoticia" class="w3-btn w3-red" style="text-decoration: none">Crear Noticia</a>
-                <a href="interno.php?page=panelControl" class="w3-btn w3-red" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
+                <a href="interno.php?page=crearSeccion" class="w3-btn btn-primary" style="text-decoration: none">Crear Seccion</a>
+                <a href="interno.php?page=crearNoticia" class="w3-btn btn-primary" style="text-decoration: none">Crear Noticia</a>
+                <a href="interno.php?page=panelControl" class="w3-btn btn-primary" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
             </div>
         </div>
         <br>
@@ -42,17 +42,17 @@
                         echo "<td>$posCampo[3]</td>";
                         if($pos[2] == 1){
                         echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='interno.php?page=buscarProductoById&idProducto=$posCampo[0]'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon  glyphicon-pencil w3-center' href='interno.php?page=buscarProductoById&idProducto=$posCampo[0]'/>";
                         echo "</td>";
                         echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center'href='#'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-trash w3-center'href='#'/>";
                         echo "</td>";
                         } else {
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
                             echo "</td>";
                                echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash  w3-center w3-disabled'href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-trash  w3-center w3-disabled'href='#'/>";
                             echo "</td>";
                         }
                         echo"</tr>";
@@ -96,23 +96,23 @@
                         echo "<td>$posSeccion[3]</td>";
                         if($pos[2] == 1){
                         echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon  glyphicon-pencil w3-center' href='interno.php?page=buscarSeccionById&idSeccion=$posSeccion[0]'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon  glyphicon-pencil w3-center' href='interno.php?page=buscarSeccionById&idSeccion=$posSeccion[0]'/>";
                         echo "</td>";
                         echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='interno.php?page=cambiarEstadoSeccion&idSeccion=$posSeccion[0]&idEstado=$posSeccion[3]'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-check w3-center' href='interno.php?page=cambiarEstadoSeccion&idSeccion=$posSeccion[0]&idEstado=$posSeccion[3]'/>";
                         echo "</td>";
                         echo "<td>";
-                            echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center'href='interno.php?page=eliminarSeccion&idSeccion=$posSeccion[0]'/>";
+                            echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-trash w3-center'href='interno.php?page=eliminarSeccion&idSeccion=$posSeccion[0]'/>";
                         echo "</td>";
                         } else {
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
                             echo "</td>";
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
                             echo "</td>";
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center w3-disabled'href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-trash w3-center w3-disabled'href='#'/>";
                             echo "</td>";
                         }
                         
@@ -170,45 +170,45 @@
                         echo "<td>$posNoticia[3]</td>";
                         if($pos[2] == 1){
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-picture w3-center w3-disabled' href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-picture w3-center w3-disabled' href='#'/>";
                                 echo "</td>";
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-pencil w3-center w3-disabled' href='#'/>";
                             echo "</td>";
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center' href='interno.php?page=cambiarEstadoNoticia&idNoticia=$posNoticia[0]&idEstado=$posNoticia[3]'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-check w3-center' href='interno.php?page=cambiarEstadoNoticia&idNoticia=$posNoticia[0]&idEstado=$posNoticia[3]'/>";
                             echo "</td>";
                             if (strcmp($posNoticia[7],"SI")==0){
                                 echo "<td>";
-                                    echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-ok w3-center 'href='#'/>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-ok w3-center 'href='interno.php?page=cambiarEstadoLibre&idNoticia=$posNoticia[0]&idEstado=$posNoticia[7]'/>";
                                 echo "</td>";}
                                 else{
                                 echo "<td>";
-                                    echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-lock w3-center 'href='#'/>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-lock w3-center 'href='interno.php?page=cambiarEstadoLibre&idNoticia=$posNoticia[0]&idEstado=$posNoticia[7]'/>";
                                 echo "</td>"; }
                             echo "<td>";
-                                echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center' href='interno.php?page=eliminarNoticia&idNoticia=$posNoticia[0]'/>";
+                                echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-trash w3-center' href='interno.php?page=eliminarNoticia&idNoticia=$posNoticia[0]'/>";
                             echo "</td>";
                             } else {
                                 echo "<td>";
-                                    echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-picture w3-center' href='interno.php?page=buscarNoticiaImagenById&idNoticia=$posNoticia[0]'/>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-picture w3-center' href='interno.php?page=buscarNoticiaImagenById&idNoticia=$posNoticia[0]'/>";
                                 echo "</td>";
                                 echo "<td>";
-                                    echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-pencil w3-center' href='interno.php?page=buscarNoticiaById&idNoticia=$posNoticia[0]'/>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-pencil w3-center' href='interno.php?page=buscarNoticiaById&idNoticia=$posNoticia[0]'/>";
                                 echo "</td>";
                                 echo "<td>";
-                                    echo"<a class='w3-padding w3-xlarge w3-text-orange  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-teal  glyphicon glyphicon-check w3-center w3-disabled' href='#'/>";
                                 echo "</td>";
                                 if (strcmp($posNoticia[7],"SI")==0){
                                 echo "<td>";
-                                    echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-ok w3-center  w3-disabled'href='#'/>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-ok w3-center  w3-disabled'href='#'/>";
                                 echo "</td>";}
                                 else{
                                 echo "<td>";
-                                    echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-lock w3-center  w3-disabled'href='#'/>";
-                                echo "</td>"; }                                
+                                    echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-lock w3-center  w3-disabled'href='#'/>";
+                                echo "</td>"; }                               
                                 echo "<td>";
-                                    echo"<a class='w3-padding w3-xlarge w3-text-orange glyphicon glyphicon-trash w3-center  w3-disabled'href='#'/>";
+                                    echo"<a class='w3-padding w3-xlarge w3-text-teal glyphicon glyphicon-trash w3-center  w3-disabled'href='#'/>";
                                 echo "</td>";
                         }
                         echo"</tr>";
