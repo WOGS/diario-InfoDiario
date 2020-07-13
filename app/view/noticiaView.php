@@ -102,7 +102,10 @@
                     <a href="#">Ir a Pronóstico Completo</a>
                 </div>
             </div> <!-- fin clima -->
-            <a href="index.php?page=panelUsuario" class="w3-btn w3-round w3-blue-grey" style="text-decoration: none" svalue="cancelar"> PANEL USUARIO</a>     
+            <?php
+            if(isset($_SESSION["usuarioOK"])) {?>
+                <a href="index.php?page=panelUsuario" class="w3-btn w3-round w3-blue-grey" style="text-decoration: none" svalue="cancelar"> PANEL USUARIO</a>    
+            <?php } ?>     
         </div> <!-- md-3 -->
 </div> <!-- fin container -->
 
