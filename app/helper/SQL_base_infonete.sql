@@ -219,6 +219,7 @@ Cod_contenidista int NOT NULL,
 EstadoAutorizado varchar(2),
 Origen varchar(10),
 Cod_revista int,
+AccesoGratuito varchar(2) DEFAULT 'NO',
 CONSTRAINT PK_Noticia PRIMARY KEY (Cod_noticia),
 CONSTRAINT FK_Seccion_Noticia FOREIGN KEY (Cod_seccion) REFERENCES Seccion (Cod_seccion),
 CONSTRAINT FK_Noticia_Usuario FOREIGN KEY (Cod_contenidista) REFERENCES Usuario (Id_usuario),   /* ver id usuario/autor de la noticia */	
