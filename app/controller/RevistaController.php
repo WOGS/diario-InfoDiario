@@ -103,16 +103,15 @@ class RevistaController{
         header("Location: interno.php?page=admRevista");
     }
 
-        public function executeBuscarNoticiaImagenById($idNoticia){
-            $this->modelo->executeBuscarNoticiaImagenById($idNoticia);
-            include_once("view/revista/crearImagenNoticia.php");
-        }
+    public function executeBuscarNoticiaImagenById($idNoticia){
+        $this->modelo->executeBuscarNoticiaImagenById($idNoticia);
+        include_once("view/revista/crearImagenNoticia.php");
+    }
 
     public function executeCambiarEstadoLibre($idNoticia,$idEstado){
         $this->modelo->executeCambiarEstadoLibre($idNoticia,$idEstado);
         header("Location: interno.php?page=admRevista");
-        
-
     }
         
 }
+

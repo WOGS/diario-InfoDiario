@@ -236,7 +236,7 @@ switch ($page){
         include_once("controller/RevistaController.php");
         $controller = new RevistaController();
         $controller->executeCambiarEstadoLibre($idNoticia,$idEstado);
-        break;
+        break;  
 
     case "inicioAdm":
     default:

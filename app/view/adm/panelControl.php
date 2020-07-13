@@ -8,6 +8,8 @@
                 <a href="interno.php?page=registrar" class="w3-btn btn-primary" style="text-decoration: none">Alta Usuario</a>
                 <a href="interno.php?page=admRevista" class="w3-btn btn-primary" style="text-decoration: none">Administrar Contenido</a>
                 <a href="interno.php?page=listarUsuario" class="w3-btn btn-primary" style="text-decoration: none">Listar Usuarios</a>
+                <a href="view/adm/reporteSuscripciones.php" class="w3-btn btn-primary" style="text-decoration: none" target="_blank">Reporte Suscripciones</a>
+                <a href="view/adm/reportePagos.php" class="w3-btn btn-primary" style="text-decoration: none" target="_blank">Reporte Pagos</a>
         </div>
         <br>
         <div class='w3-container'>
@@ -58,15 +60,4 @@
         <br>
         <br>
     </div>
-    <!--script>
-        var close = document.getElementsByClassName("closebtn");
-        var i;
-        for (i = 0; i < close.length; i++) {
-            close[i].onclick = function(){
-                var div = this.parentElement;
-                div.style.opacity = "0";
-                setTimeout(function(){ div.style.display = "none"; }, 600);
-            }
-        }
-    </script-->
-
+</div>

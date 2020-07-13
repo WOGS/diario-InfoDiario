@@ -60,7 +60,6 @@
                                 <li> <?php echo $posCampo[2]?> </li>
                                 <li> <?php echo $posCampo[3]?> </li>
                                 <li> Fecha Suscripcion <?php echo $posCampo[4]?> </li>
-                                <li> <?php echo $posCampo[0]?> </li>
                             </ul>
                             <a type="button" class="btn btn-lg btn-block btn-primary mt-auto" href="index.php?page=buscarNoticiasPorProducto&idProducto=<?php echo $posCampo[0]?>">Leer</a>
                         </div>

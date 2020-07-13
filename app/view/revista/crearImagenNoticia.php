@@ -23,16 +23,17 @@ if(isset($_SESSION["usuarioOK"])) {
                         <INPUT class="w3-button w3-blue-grey w3-round" TYPE="file" NAME="file">
                         <br>
                         <br>
-                        <input class="w3-button w3-blue-grey w3-round" type="submit" value="Subir imagen">
+                        
+                        <div class="w3-container w3-center w3-margin-bottom">
+                            <input class="w3-button w3-blue-grey w3-round" type="submit" value="Subir imagen">
+                            <a href="interno.php?page=buscarSecciones" class="w3-button w3-blue-grey w3-round w3-center" style="text-decoration: none" value="cancelar"> VOLVER </a>
+                        </div>
+                        </div>
                     </FORM>
                 </div>
             </div>
-        	</section>
+            </section>
             <br/>
-            <div class="w3-container w3-center w3-margin-bottom">
-                <a href="interno.php?page=buscarSecciones" class="w3-button w3-blue-grey w3-round w3-center" style="text-decoration: none" value="cancelar"> VOLVER </a>
-                </div>
-            </div>
     </div>
     <?php
 }

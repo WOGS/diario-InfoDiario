@@ -1,20 +1,35 @@
 <?php
     if(isset($_SESSION["noticiaModif"])) {
-   	$noticia = $_SESSION["noticiaModif"];
-    $posNoticia = explode("-", $noticia);    	
+    $noticia = $_SESSION["noticiaModif"];
+    $posNoticia = explode("-", $noticia);       
 }
 ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1 class="text-center">InfoNete
-                <small>Diario Online</small>
-            </h1>
+            <?php
+                $titulo = "";
+                if(isset($_SESSION["titulo"])) {
+                    if(strcmp($_SESSION["titulo"],"INFONETE")==0){ ?>
+                      <h1 class="text-center">InfoNete <small>Diario Online</small> </h1>
+                  <?php
+                  }
+                  else { ?> 
+                    <h1 class="text-center"><?php echo $_SESSION["titulo"]; ?>        
+                  </h1>
+                  <?php 
+                    }
+                  }
+                  else { ?>
+                    <h1 class="text-center">InfoNete <small>Diario Online</small> </h1>
+                  <?php
+                    }
+                 ?>
         </div>      <!-- row 1 -->
     </div> <!-- fin row 1 -->
     <hr>
     <div class="col-md-9">
-    	<p class="mt-4"><?php echo $posNoticia[4]; ?></p>
+        <p class="mt-4"><?php echo $posNoticia[4]; ?></p>
         <h1><?php echo $posNoticia[1]; ?>           
         </h1>
         <p class="lead">Por <?php echo $posNoticia[5]; ?></p>          
@@ -23,15 +38,15 @@
         <hr>
         <img class="img-fluid rounded" src="view/img/<?php echo $posNoticia[0]; ?>.jpg" alt=""><br>
         <p class="lead"><?php echo $posNoticia[2]; ?></p><br>
-        <p><?php echo $posNoticia[3]; ?></p>	
+        <p><?php echo $posNoticia[3]; ?></p>    
 
 
         <hr>   
 
 
 
-		</div>   <!-- fin md9 -->
-		<div class="col-md-3"> <!-- md-3 -->
+        </div>   <!-- fin md9 -->
+        <div class="col-md-3"> <!-- md-3 -->
             <?php if(!isset($_SESSION["usuarioOK"])) {  ?>
             <div class="card"> <!-- ingresar -->
                 <h5 class="card-header">Ingreso <span><svg class="bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -87,40 +102,7 @@
                     <a href="#">Ir a Pronóstico Completo</a>
                 </div>
             </div> <!-- fin clima -->
-
-            <div class="card my-4"> <!-- otros -->
-                <h5 class="card-header">Otras Publicaciones <span><svg class="bi bi-book" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" d="M3.214 1.072C4.813.752 6.916.71 8.354 2.146A.5.5 0 018.5 2.5v11a.5.5 0 01-.854.354c-.843-.844-2.115-1.059-3.47-.92-1.344.14-2.66.617-3.452 1.013A.5.5 0 010 13.5v-11a.5.5 0 01.276-.447L.5 2.5l-.224-.447.002-.001.004-.002.013-.006a5.017 5.017 0 01.22-.103 12.958 12.958 0 012.7-.869zM1 2.82v9.908c.846-.343 1.944-.672 3.074-.788 1.143-.118 2.387-.023 3.426.56V2.718c-1.063-.929-2.631-.956-4.09-.664A11.958 11.958 0 001 2.82z" clip-rule="evenodd"/>
-                    <path fill-rule="evenodd" d="M12.786 1.072C11.188.752 9.084.71 7.646 2.146A.5.5 0 007.5 2.5v11a.5.5 0 00.854.354c.843-.844 2.115-1.059 3.47-.92 1.344.14 2.66.617 3.452 1.013A.5.5 0 0016 13.5v-11a.5.5 0 00-.276-.447L15.5 2.5l.224-.447-.002-.001-.004-.002-.013-.006-.047-.023a12.582 12.582 0 00-.799-.34 12.96 12.96 0 00-2.073-.609zM15 2.82v9.908c-.846-.343-1.944-.672-3.074-.788-1.143-.118-2.387-.023-3.426.56V2.718c1.063-.929 2.631-.956 4.09-.664A11.956 11.956 0 0115 2.82z" clip-rule="evenodd"/></svg></span></h5>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <ul class="list-unstyled mb-0">
-                                <li>
-                                    <a href="#">Diario 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Diario 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Diario 3</a>
-                                </li>
-                                <li>
-                                    <a href="#">Revista 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Revista 2</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                
-               </div> 
-            </div>  <!-- fin otros -->       
+            <a href="index.php?page=panelUsuario" class="w3-btn w3-round w3-blue-grey" style="text-decoration: none" svalue="cancelar"> PANEL USUARIO</a>     
         </div> <!-- md-3 -->
-
-
-
-
 </div> <!-- fin container -->
 

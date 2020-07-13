@@ -52,12 +52,12 @@
     <?php  }?>
 
         <div class="container">
-            <input class="w3-button w3-blue-grey w3-round w3-center" type="submit" name="boton" value="ENVIAR">
+            <input class="w3-button w3-blue-grey w3-round w3-center w3-margin-bottom" type="submit" name="boton" value="ENVIAR">
             <?php
             if(strcmp($_SESSION["usuarioAlta"],"Admin")==0){ ?>
-            <a href="interno.php?page=panelControl" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar">CANCELAR</a>
+            <a href="interno.php?page=panelControl" class="w3-button w3-blue-grey w3-round w3-center w3-margin-bottom"  style="text-decoration: none" value="cancelar">CANCELAR</a>
             <?php } else{ ?>
-            <a href="index.php?page=panelUsuario" class="w3-button w3-blue-grey w3-round w3-center"  value="cancelar">CANCELAR</a>
+            <a href="index.php?page=panelUsuario" class="w3-button w3-blue-grey w3-round w3-center w3-margin-bottom" style="text-decoration: none"  value="cancelar">CANCELAR</a>
             <?php } ?>
         </div>
     </form>

@@ -35,6 +35,9 @@
                 </div>
         <?php }
             } ?>
-    </div> <a href="index.php?page=panelUsuario" class="w3-btn w3-red" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
+    </div>
+    <div class="w3-container w3-center w3-margin-bottom"> 
+        <a href="index.php?page=panelUsuario" class="w3-btn w3-red" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
+    </div>
 </div><br><br><br>
 

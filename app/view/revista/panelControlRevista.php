@@ -12,7 +12,11 @@
             ?>
                 <a href="interno.php?page=crearSeccion" class="w3-btn btn-primary" style="text-decoration: none">Crear Seccion</a>
                 <a href="interno.php?page=crearNoticia" class="w3-btn btn-primary" style="text-decoration: none">Crear Noticia</a>
+            <?php
+            if($pos[2] == 1){?>
                 <a href="interno.php?page=panelControl" class="w3-btn btn-primary" style="text-decoration: none" svalue="cancelar"> VOLVER </a>
+            <?php }
+            ?>
             </div>
         </div>
         <br>
